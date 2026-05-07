@@ -1,14 +1,11 @@
-/**
- * Stephan Bredenhann — portfolio CV
- * Palette: #1a1a2e (navy), #b8a165 (gold), #003366 (blue), neutrals as documented.
- */
+
 
 :root {
     color-scheme: light;
 
     --navy: #1a1a2e;
     --gold: #b8a165;
-    --blue: #003366;
+    --blue: #0b4a8a;
     --text: #333333;
     --muted: #5c5c5c;
     --surface: #ffffff;
@@ -26,7 +23,7 @@
     --card-border-accent: var(--blue);
 
     --hero-bg:
-        radial-gradient(ellipse 90% 65% at 75% 25%, rgba(0, 51, 102, 0.1), transparent 55%),
+        radial-gradient(ellipse 90% 65% at 75% 25%, rgba(11, 74, 138, 0.1), transparent 55%),
         radial-gradient(ellipse 55% 45% at 15% 85%, rgba(184, 161, 101, 0.09), transparent 52%),
         linear-gradient(180deg, rgba(240, 240, 240, 0.95) 0%, var(--surface) 100%);
     --hero-glow: radial-gradient(circle at 12% 18%, rgba(184, 161, 101, 0.07), transparent 42%);
@@ -71,7 +68,7 @@
     --card-border: rgba(255, 255, 255, 0.08);
 
     --hero-bg:
-        radial-gradient(ellipse 85% 60% at 78% 22%, rgba(0, 51, 102, 0.35), transparent 55%),
+        radial-gradient(ellipse 85% 60% at 78% 22%, rgba(11, 74, 138, 0.35), transparent 55%),
         radial-gradient(ellipse 50% 45% at 12% 88%, rgba(184, 161, 101, 0.12), transparent 52%),
         linear-gradient(180deg, #12121f 0%, var(--surface) 100%);
     --hero-glow: radial-gradient(circle at 14% 16%, rgba(184, 161, 101, 0.12), transparent 45%);
@@ -552,7 +549,7 @@ a:hover {
     box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.75) inset,
         0 24px 48px rgba(26, 26, 46, 0.08),
-        0 4px 16px rgba(0, 51, 102, 0.06);
+        0 4px 16px rgba(11, 74, 138, 0.06);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
@@ -579,7 +576,7 @@ a:hover {
     align-items: center;
     gap: 0.45rem;
     padding: 0.45rem 0.85rem;
-    border: 1px solid rgba(0, 51, 102, 0.35);
+    border: 1px solid rgba(11, 74, 138, 0.35);
     border-radius: 999px;
     font-size: 0.88rem;
     font-weight: 600;
@@ -601,10 +598,15 @@ a:hover {
 }
 
 .hero__link:hover {
-    border-color: rgba(0, 51, 102, 0.55);
+    border-color: rgba(11, 74, 138, 0.55);
     color: var(--text);
     background: rgba(255, 255, 255, 0.88);
     box-shadow: 0 2px 14px rgba(26, 26, 46, 0.08);
+}
+
+.skill-label {
+    color: var(--blue);
+    font-weight: 700;
 }
 
 :root[data-theme="dark"] .hero__link:hover {
