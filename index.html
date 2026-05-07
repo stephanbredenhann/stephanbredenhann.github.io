@@ -1,156 +1,299 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stephan Bredenhann</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stephan Bredenhann — CV</title>
+
+    <!-- Edit this description for search results & social previews -->
+    <meta name="description" content="Third-year BIT student (Information Science) at the University of Pretoria. CV and contact details.">
+
+    <meta name="theme-color" content="#1a1a2e">
+
+    <!-- Inline theme bootstrap: avoids flash before CSS/JS (preference: localStorage → system) -->
+    <script>
+        (function () {
+            try {
+                var k = "sb-theme";
+                var s = localStorage.getItem(k);
+                var dark = s ? s === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+                document.documentElement.dataset.theme = dark ? "dark" : "light";
+                document.documentElement.style.colorScheme = dark ? "dark" : "light";
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.content = dark ? "#0c0c16" : "#1a1a2e";
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Open Graph — replace og:url and og:image with your live site URL and a 1200×630 preview image when ready -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Stephan Bredenhann">
+    <meta property="og:description" content="Third-year BIT student (Information Science) at the University of Pretoria.">
+    <meta property="og:url" content="https://stephanbredenhann.github.io/">
+    <meta property="og:image" content="https://stephanbredenhann.github.io/preview.png">
+
+    <link rel="canonical" href="https://stephanbredenhann.github.io/">
+
+    <link rel="icon" href="icon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="icon.png" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <nav class="sticky-nav">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+            <div class="site-nav__inner">
+                <a class="site-nav__brand" href="#landing">Stephan Bredenhann</a>
+                <div class="site-nav__cluster">
+                    <button
+                        type="button"
+                        class="theme-toggle"
+                        data-theme-toggle
+                        aria-pressed="false"
+                        aria-label="Switch to dark mode"
+                        title="Toggle night mode"
+                    >
+                        <svg class="icon theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.45 5.45 0 0 1-5.86-5 5.39 5.39 0 0 1 3.24-5.2c-.44-.06-.9-.1-1.36-.1Z"/>
+                        </svg>
+                        <svg class="icon theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1ZM5.64 6.05a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41L5.64 7.46a1 1 0 0 1 0-1.41Zm12.02 12.02a1 1 0 0 1 1.41 0 1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41-1.41l1.42-1.42ZM18 12a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1ZM9 12a1 1 0 0 1-1 1H6a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1Zm7.36-5.95a1 1 0 0 1-1.41 0L13.53 5.63a1 1 0 0 1 1.41-1.41l1.42 1.42a1 1 0 0 1 0 1.41ZM7.05 18.36a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 1 1 1.41 1.41l-1.42 1.42a1 1 0 0 1-1.41 0Z"/>
+                        </svg>
+                    </button>
+                    <button
+                        type="button"
+                        class="site-nav__toggle"
+                        aria-expanded="false"
+                        aria-controls="site-nav-menu"
+                        data-nav-toggle
+                    >
+                        <span class="site-nav__toggle-box" aria-hidden="true">
+                            <span class="site-nav__toggle-line"></span>
+                            <span class="site-nav__toggle-line"></span>
+                            <span class="site-nav__toggle-line"></span>
+                        </span>
+                        <span class="visually-hidden">Menu</span>
+                    </button>
+                    <ul id="site-nav-menu" class="site-nav__list" data-nav-menu>
+                        <li><a href="#landing">Home</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <section class="intro-section" id="about-me">
-            <div class="carousel">
-                <img id="carousel-image" src="image1.jpeg" alt="Carousel Image">
-                <button class="carousel-button prev" onclick="prevImage()">❮</button>
-                <button class="carousel-button next" onclick="nextImage()">❯</button>
-            </div>
-            <div class="about-intro">
-                <h2>About Me</h2>
-                <p>
-                    I am a dedicated second-year student pursuing a Bachelor of Information Technology (Information Systems) at the University of Pretoria. 
-                    My passion for technology and programming started at a young age, driving me to explore various facets of the technology world, from software development to working with all kinds of hardware. 
-                    I am committed to expanding my skills in these areas as I work towards a career that integrates my technical knowledge with innovative solutions.
-                </p>
-                <p>
-                    In addition to my academic pursuits, I bring experience from the hospitality industry, which has honed my customer service and multitasking abilities. 
-                    Currently, I work part-time at Buffelsfontein Beesboerdery, a role that allows me to balance hands-on industry experience with my studies. 
-                    This position has not only strengthened my time-management skills but also taught me the importance of adaptability and teamwork in a professional setting.
-                </p>
-                <p>
-                    I am eager to continue learning and growing within the field of information technology, with a particular interest in leveraging technology to solve real-world challenges. 
-                    My goal is to contribute meaningfully to the tech industry by building systems and applications that improve efficiency and accessibility across various sectors.
-                </p>
+    <main id="main">
+        <section id="landing" class="hero" aria-labelledby="hero-heading">
+            <div class="hero__inner">
+                <div class="hero__copy">
+                    <p class="hero__eyebrow">Portfolio &amp; CV</p>
+                    <h1 id="hero-heading" class="hero__title">Stephan Bredenhann</h1>
+                    <p class="hero__tagline">
+                        Third-year BIT · Information Science · University of Pretoria
+                    </p>
+
+                    <!-- Replace placeholder URLs with your real profiles (keep rel + target for external sites) -->
+                    <ul class="hero__links" aria-label="Social links">
+                        <li>
+                            <a
+                                class="hero__link"
+                                href="https://github.com/YOUR_USERNAME"
+                                target="_blank"
+                                rel="noopener noreferrer me"
+                            >
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.5 3.58 10.15 8.55 11.8.63.12.86-.27.86-.6 0-.3-.01-1.12-.01-2.2-3.48.76-4.22-1.68-4.22-1.68-.57-1.45-1.4-1.84-1.4-1.84-1.14-.78.09-.76.09-.76 1.26.09 1.93 1.3 1.93 1.3 1.12 1.92 2.94 1.37 3.65 1.05.11-.83.44-1.37.8-1.68-2.78-.32-5.7-1.39-5.7-6.18 0-1.37.49-2.49 1.29-3.37-.13-.32-.56-1.61.12-3.36 0 0 1.05-.34 3.44 1.29a12 12 0 0 1 3.12-.42c1.06 0 2.12.14 3.12.42 2.39-1.63 3.44-1.29 3.44-1.29.68 1.75.25 3.04.12 3.36.8.88 1.29 2 1.29 3.37 0 4.8-2.93 5.85-5.73 6.16.45.39.85 1.15.85 2.32 0 1.68-.02 3.03-.02 3.44 0 .33.23.73.88.6A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+                                GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                class="hero__link"
+                                href="https://www.linkedin.com/in/YOUR_PROFILE"
+                                target="_blank"
+                                rel="noopener noreferrer me"
+                            >
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.65-1.85 3.4-1.85 3.64 0 4.31 2.4 4.31 5.52v6.22ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.11 20.45H3.56V9h3.55v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.2.79 24 1.77 24h20.45c.98 0 1.78-.8 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+                                LinkedIn
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="hero__actions">
+                        <a class="button button--primary" href="#experience">View experience</a>
+                        <a class="button button--ghost" href="mailto:s.bredenhann456@gmail.com">Email me</a>
+                    </div>
+                </div>
+
+                <div class="hero__art" aria-hidden="true">
+                    <svg class="hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="hero-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#003366" stop-opacity="0.95"/>
+                                <stop offset="100%" stop-color="#b8a165" stop-opacity="0.9"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="200" cy="160" r="118" fill="none" stroke="#1a1a2e" stroke-width="1.25" stroke-opacity="0.35"/>
+                        <circle cx="200" cy="160" r="88" fill="none" stroke="#003366" stroke-width="1" stroke-opacity="0.4"/>
+                        <circle cx="200" cy="160" r="58" fill="none" stroke="#b8a165" stroke-width="1" stroke-opacity="0.45"/>
+                        <path class="hero__orbit" d="M 42 160 A 158 158 0 0 1 358 160" fill="none" stroke="url(#hero-grad)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="12 18"/>
+                        <path d="M 72 220 L 328 100" stroke="#1a1a2e" stroke-width="0.9" stroke-opacity="0.25"/>
+                        <path d="M 100 70 L 300 250" stroke="#003366" stroke-width="0.75" stroke-opacity="0.3"/>
+                        <circle cx="320" cy="90" r="6" fill="none" stroke="#b8a165" stroke-width="1.2" stroke-opacity="0.5"/>
+                        <circle cx="85" cy="230" r="4" fill="none" stroke="#003366" stroke-width="1" stroke-opacity="0.45"/>
+                        <circle cx="200" cy="48" r="3.5" fill="none" stroke="#b8a165" stroke-width="1" stroke-opacity="0.4"/>
+                    </svg>
+                </div>
             </div>
         </section>
 
-        
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="experience-item">
-                <h3>Buffelsfontein Beesboerdery</h3>
-                <p><strong>Role:</strong> Part-Time Bartender</p>
-                <p><strong>Dates:</strong> March 2024 - Present</p>
-                <p>
-                    Currently working part-time, gaining valuable skills in teamwork, customer service, and operational efficiency. 
-                    This experience has enhanced my ability to balance work and study responsibilities effectively, while developing a hands-on understanding of daily operations.
-                </p>
-            </div>
-            <div class="experience-item">
-                <h3>Various Hospitality Roles</h3>
-                <p><strong>Role:</strong> Seasonal and Holiday Staff</p>
-                <p><strong>Dates:</strong> 2020 - Present</p>
-                <p>
-                    Over school and university holidays since 2020, I have worked in several hospitality roles, including positions in customer service, event support, and front-of-house tasks. 
-                    These roles have improved my adaptability, communication skills, and ability to perform well in high-pressure environments.
-                </p>
-            </div>
-        </section>
-        
+        <div class="layout">
+            <section id="experience" class="flow section" aria-labelledby="experience-heading">
+                <h2 id="experience-heading" class="section-title">Experience</h2>
+                <div class="cards">
+                    <article class="card">
+                        <h3 class="card__title">Buffelsfontein Beesboerdery</h3>
+                        <p><span class="label">Role</span> Part-Time Bartender</p>
+                        <p><span class="label">Dates</span> March 2024 – Present</p>
+                        <p>
+                            Currently working part-time, gaining valuable skills in teamwork, customer service, and operational efficiency.
+                            This experience has enhanced my ability to balance work and study responsibilities effectively, while developing a hands-on understanding of daily operations.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__title">Various Hospitality Roles</h3>
+                        <p><span class="label">Role</span> Seasonal and Holiday Staff</p>
+                        <p><span class="label">Dates</span> 2020 – Present</p>
+                        <p>
+                            Over school and university holidays since 2020, I have worked in several hospitality roles, including positions in customer service, event support, and front-of-house tasks.
+                            These roles have improved my adaptability, communication skills, and ability to perform well in high-pressure environments.
+                        </p>
+                    </article>
+                </div>
+            </section>
 
-        <section id="education">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>IEB National Senior Certificate (NSC)</h3>
-                <p><strong>Institution:</strong> Independent Examinations Board (IEB)</p>
-                <p><strong>Year:</strong> 2022</p>
-                <p><strong>Average:</strong> 81% (3 Distinctions)</p>
-                <p>
-                    Achieved my National Senior Certificate with an excellent academic performance, earning distinctions in key subjects. 
-                    This experience laid a strong foundation for my further studies in Information Technology.
-                </p>
-            </div>
-            <div class="education-item">
-                <h3>Bachelor of Information Technology (BIT) (Graduating 2026)</h3>
-                <p><strong>Institution:</strong> University of Pretoria</p>
-                <p><strong>Year:</strong> 2024 - Present</p>
-                <p><strong>Average:</strong> 76% (First Year)</p>
-                <p>
-                    Currently enrolled as a second-year student in the BIT program with a focus on Information Science. 
-                    My coursework has strengthened my foundation in IT concepts, programming, and systems analysis, 
-                    and I am eager to continue developing my skills in these areas.
-                </p>
-            </div>
-        </section>
-        
+            <section id="education" class="flow section" aria-labelledby="education-heading">
+                <h2 id="education-heading" class="section-title">Education</h2>
+                <div class="cards">
+                    <article class="card">
+                        <h3 class="card__title">IEB National Senior Certificate (NSC)</h3>
+                        <p><span class="label">Institution</span> Independent Examinations Board (IEB)</p>
+                        <p><span class="label">Year</span> 2022</p>
+                        <p><span class="label">Average</span> 81% (3 Distinctions)</p>
+                        <p>
+                            Achieved my National Senior Certificate with an excellent academic performance, earning distinctions in key subjects.
+                            This experience laid a strong foundation for my further studies in Information Technology.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__title">Bachelor of Information Technology (BIT) (Graduating 2026)</h3>
+                        <p><span class="label">Institution</span> University of Pretoria</p>
+                        <p><span class="label">Year</span> 2024 – Present</p>
+                        <p><span class="label">Average</span> 76% (First Year)</p>
+                        <p><span class="label">Second year</span> [placeholder — add % when finalized]</p>
+                        <p>
+                            Currently enrolled as a third-year student in the BIT program with a focus on Information Science.
+                            My coursework has strengthened my foundation in IT concepts, programming, and systems analysis,
+                            and I am eager to continue developing my skills in these areas.
+                        </p>
+                        <!-- Optional: replace hrefs with your programme or module handbook URLs -->
+                        <p class="muted">
+                            Programme reference:
+                            <a href="https://www.up.ac.za/" target="_blank" rel="noopener noreferrer">University of Pretoria</a>
+                            <span aria-hidden="true"> · </span>
+                            <a href="https://www.up.ac.za/faculty-of-engineering-built-environment-it" target="_blank" rel="noopener noreferrer">EBIT faculty</a>
+                        </p>
+                    </article>
+                </div>
+            </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-item">
-                <h3>Technical Skills</h3>
-                <ul>
-                    <li>Programming Languages: Python, JavaScript, HTML, CSS, C++, C#</li>
-                    <li>Web Development: Strong knowledge of front-end technologies (HTML, CSS, JavaScript), responsive design, and web design principles</li>
-                    <li>Software Development: Familiar with basic software engineering practices, object-oriented programming, and debugging techniques</li>
-                    <li>Operating Systems: Comfortable working in Windows and Linux environments</li>
-                    <li>Version Control: Familiar with Git and GitHub for version control and collaboration</li>
-                </ul>
-            </div>
-            <div class="skills-item">
-                <h3>Soft Skills</h3>
-                <ul>
-                    <li>Communication: Effective communication skills developed through both academic presentations and customer-facing roles</li>
-                    <li>Teamwork: Ability to work collaboratively in team settings, honed through various work and academic group projects</li>
-                    <li>Problem Solving: Strong analytical thinking skills, enhanced by university coursework and hands-on experience with practical challenges</li>
-                    <li>Adaptability: Flexible and capable of learning new technologies and methodologies quickly in dynamic environments</li>
-                    <li>Time Management: Effective at managing academic workload alongside part-time work, balancing multiple responsibilities</li>
-                </ul>
-            </div>
-        </section>
+            <section id="skills" class="flow section" aria-labelledby="skills-heading">
+                <h2 id="skills-heading" class="section-title">Skills</h2>
+                <div class="cards">
+                    <article class="card">
+                        <h3 class="card__title">Technical Skills</h3>
+                        <ul class="list">
+                            <li>Programming Languages: Python, JavaScript, HTML, CSS, C++, C#</li>
+                            <li>Web Development: Strong knowledge of front-end technologies (HTML, CSS, JavaScript), responsive design, and web design principles</li>
+                            <li>Software Development: Familiar with basic software engineering practices, object-oriented programming, and debugging techniques</li>
+                            <li>Operating Systems: Comfortable working in Windows and Linux environments</li>
+                            <li>Version Control: Familiar with Git and GitHub for version control and collaboration</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__title">Soft Skills</h3>
+                        <ul class="list">
+                            <li>Communication: Effective communication skills developed through both academic presentations and customer-facing roles</li>
+                            <li>Teamwork: Ability to work collaboratively in team settings, honed through various work and academic group projects</li>
+                            <li>Problem Solving: Strong analytical thinking skills, enhanced by university coursework and hands-on experience with practical challenges</li>
+                            <li>Adaptability: Flexible and capable of learning new technologies and methodologies quickly in dynamic environments</li>
+                            <li>Time Management: Effective at managing academic workload alongside part-time work, balancing multiple responsibilities</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
 
-        <section id="contact">
-            <h2>Contact Information</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <p><strong>Personal Email:</strong> s.bredenhann456@gmail.com</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope-open-text"></i>
-                    <p><strong>Academic Email:</strong> u23667436@tuks.co.za</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p><strong>Address:</strong> 1233 Burnett Street, Hatfield, Pretoria, South Africa</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <p><strong>Phone Number:</strong> +27 71 566 0997</p>
-                </div>
-            </div>
-        </section>     
-        
+            <section id="contact" class="flow section section--contact" aria-labelledby="contact-heading">
+                <h2 id="contact-heading" class="section-title">Contact</h2>
+                <address class="contact-card">
+                    <ul class="contact-list">
+                        <li class="contact-row">
+                            <span class="contact-icon" aria-hidden="true">
+                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+                            </span>
+                            <div>
+                                <span class="label">Personal email</span>
+                                <a href="mailto:s.bredenhann456@gmail.com">s.bredenhann456@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="contact-row">
+                            <span class="contact-icon" aria-hidden="true">
+                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M4 6h16v2H4V6Zm0 5h10v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>
+                            </span>
+                            <div>
+                                <span class="label">Academic email</span>
+                                <a href="mailto:u23667436@tuks.co.za">u23667436@tuks.co.za</a>
+                            </div>
+                        </li>
+                        <li class="contact-row">
+                            <span class="contact-icon" aria-hidden="true">
+                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+                            </span>
+                            <div>
+                                <span class="label">Address</span>
+                                <span>1233 Burnett Street, Hatfield, Pretoria, South Africa</span>
+                            </div>
+                        </li>
+                        <li class="contact-row">
+                            <span class="contact-icon" aria-hidden="true">
+                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8c1.7 3.3 4.3 5.9 7.6 7.6l2.5-2.5c.4-.4 1-.5 1.5-.3 1 .4 2.1.6 3.2.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C9.4 21 3 14.6 3 6.9a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.1.2 2.2.6 3.2.2.5.1 1.1-.3 1.5l-2.5 2.5Z"/></svg>
+                            </span>
+                            <div>
+                                <span class="label">Phone</span>
+                                <a href="tel:+27715660997">+27 71 566 0997</a>
+                            </div>
+                        </li>
+                    </ul>
+                </address>
+            </section>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2024 | Stephan Bredenhann</p>
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <p>&copy; <span data-year>2026</span> Stephan Bredenhann</p>
+            <!-- Optional: add repo or deploy link -->
+            <p class="site-footer__meta">
+                <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank" rel="noopener noreferrer">Source</a>
+                <span aria-hidden="true"> · </span>
+                <span class="muted">Hosted on GitHub Pages</span>
+            </p>
+        </div>
     </footer>
-    
-    <script src="scripts.js"></script>
+
+    <script src="main.js" type="module"></script>
 </body>
 </html>
-
-
