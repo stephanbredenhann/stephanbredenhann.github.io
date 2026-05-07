@@ -80,7 +80,7 @@ function applyTheme(theme) {
     if (themeBtn) {
         themeBtn.setAttribute("aria-pressed", String(dark));
         themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-        themeBtn.title = dark ? "Switch to light theme" : "Switch to dark theme";
+        themeBtn.title = dark ? "Switch to light mode" : "Switch to dark mode";
     }
 }
 
