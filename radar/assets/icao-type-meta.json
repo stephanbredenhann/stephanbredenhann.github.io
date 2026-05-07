@@ -1,0 +1,26 @@
+{
+  "A319": { "manufacturer": "Airbus", "typeName": "A319" },
+  "A320": { "manufacturer": "Airbus", "typeName": "A320" },
+  "A321": { "manufacturer": "Airbus", "typeName": "A321" },
+  "A20N": { "manufacturer": "Airbus", "typeName": "A320neo" },
+  "A21N": { "manufacturer": "Airbus", "typeName": "A321neo" },
+  "B737": { "manufacturer": "Boeing", "typeName": "737" },
+  "B738": { "manufacturer": "Boeing", "typeName": "737-800" },
+  "B739": { "manufacturer": "Boeing", "typeName": "737-900" },
+  "B38M": { "manufacturer": "Boeing", "typeName": "737 MAX 8" },
+  "B39M": { "manufacturer": "Boeing", "typeName": "737 MAX 9" },
+  "B744": { "manufacturer": "Boeing", "typeName": "747-400" },
+  "B748": { "manufacturer": "Boeing", "typeName": "747-8" },
+  "B763": { "manufacturer": "Boeing", "typeName": "767-300" },
+  "B772": { "manufacturer": "Boeing", "typeName": "777-200" },
+  "B77W": { "manufacturer": "Boeing", "typeName": "777-300ER" },
+  "B788": { "manufacturer": "Boeing", "typeName": "787-8" },
+  "B789": { "manufacturer": "Boeing", "typeName": "787-9" },
+  "E190": { "manufacturer": "Embraer", "typeName": "E190" },
+  "E195": { "manufacturer": "Embraer", "typeName": "E195" },
+  "E290": { "manufacturer": "Embraer", "typeName": "E190-E2" },
+  "CRJ9": { "manufacturer": "Bombardier", "typeName": "CRJ-900" },
+  "AT76": { "manufacturer": "ATR", "typeName": "ATR 72-600" },
+  "DH8D": { "manufacturer": "De Havilland Canada", "typeName": "Dash 8 Q400" }
+}
+

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+  <!-- Nose points up (+Y) for rotation = track (deg from north). -->
+  <path fill="#153d6b" stroke="#ffffff" stroke-width="1.25" stroke-linejoin="round"
+    d="M16 3.5 L19.2 12.2 L28 14.5 L19.5 15.8 L17.2 28.5 H14.8 L12.5 15.8 L4 14.5 L12.8 12.2 Z"/>
+</svg>
