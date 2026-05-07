@@ -68,7 +68,8 @@ function getSystemDark() {
 
 function applyTheme(theme) {
     const dark = theme === "dark";
-    root.dataset.theme = dark ? "dark" : "light";
+    const value = dark ? "dark" : "light";
+    root.setAttribute("data-theme", value);
     root.style.colorScheme = dark ? "dark" : "light";
 
     const meta = document.querySelector('meta[name="theme-color"]');
@@ -79,7 +80,7 @@ function applyTheme(theme) {
     if (themeBtn) {
         themeBtn.setAttribute("aria-pressed", String(dark));
         themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-        themeBtn.title = dark ? "Switch to day mode" : "Switch to night mode";
+        themeBtn.title = dark ? "Switch to light theme" : "Switch to dark theme";
     }
 }
 
@@ -96,7 +97,7 @@ function initTheme() {
 }
 
 themeBtn?.addEventListener("click", () => {
-    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     try {
         localStorage.setItem(THEME_KEY, next);
     } catch {
