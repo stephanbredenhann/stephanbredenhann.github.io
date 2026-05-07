@@ -8,7 +8,7 @@
     
     <meta name="description" content="Third-year BIT student (Information Science) at the University of Pretoria. CV and contact details.">
 
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="theme-color" content="#0c0c16">
 
     
     <script>
@@ -16,7 +16,8 @@
             try {
                 var k = "sb-theme";
                 var s = localStorage.getItem(k);
-                var dark = s ? s === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+                // Default to dark unless user explicitly chose light.
+                var dark = s ? s === "dark" : true;
                 document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
                 document.documentElement.style.colorScheme = dark ? "dark" : "light";
                 var meta = document.querySelector('meta[name="theme-color"]');

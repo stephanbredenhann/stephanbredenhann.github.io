@@ -89,7 +89,7 @@ function resolveTheme() {
     if (stored === "light" || stored === "dark") {
         return stored;
     }
-    return getSystemDark() ? "dark" : "light";
+    return "dark";
 }
 
 function initTheme() {
