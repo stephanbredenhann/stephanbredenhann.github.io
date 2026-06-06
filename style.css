@@ -522,10 +522,15 @@ a {
     padding-block: var(--space-lg);
     border-bottom: 1px solid var(--hairline);
     transition: border-color 0.4s;
+    scroll-margin-top: calc(var(--header-h) + 1rem);
 }
 
 .section:last-child {
     border-bottom: none;
+}
+
+section[id] {
+    scroll-margin-top: calc(var(--header-h) + 1rem);
 }
 
 /* ============================================================
@@ -1024,5 +1029,26 @@ a {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+
+    .timeline__line {
+        transform: scaleY(1);
+    }
+
+    .timeline__dot {
+        transform: scale(1);
+    }
+
+    .section-title__line path {
+        stroke-dashoffset: 0;
+    }
+
+    .section-title.is-drawn .section-title__line path {
+        stroke-dashoffset: 0;
     }
 }

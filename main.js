@@ -228,46 +228,43 @@ if (nameEl && !reducedMotion.matches) {
 // ==================== 7. SECTION TITLE UNDERLINE DRAWING ====================
 // ==================== 8. TIMELINE ANIMATION ====================
 
-if (!reducedMotion.matches) {
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                revealObserver.unobserve(entry.target);
-            }
+const revealObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
         }
-    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-
-    for (const el of document.querySelectorAll('[data-reveal]')) {
-        revealObserver.observe(el);
     }
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
-    const titleObserver = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-drawn');
-                titleObserver.unobserve(entry.target);
-            }
+for (const el of document.querySelectorAll('[data-reveal]')) {
+    revealObserver.observe(el);
+}
+
+const titleObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-drawn');
+            titleObserver.unobserve(entry.target);
         }
-    }, { threshold: 0.5 });
-
-    for (const el of document.querySelectorAll('.section-title')) {
-        titleObserver.observe(el);
     }
+}, { threshold: 0.5 });
 
-    const timelineObserver = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                timelineObserver.unobserve(entry.target);
-            }
+for (const el of document.querySelectorAll('.section-title')) {
+    titleObserver.observe(el);
+}
+
+const timelineObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            timelineObserver.unobserve(entry.target);
         }
-    }, { threshold: 0.2 });
-
-    for (const el of document.querySelectorAll('.timeline')) {
-        timelineObserver.observe(el);
     }
+}, { threshold: 0.2 });
+
+for (const el of document.querySelectorAll('.timeline')) {
+    timelineObserver.observe(el);
 }
 
 // ==================== 9. ACTIVE NAV LINK HIGHLIGHTING ====================
