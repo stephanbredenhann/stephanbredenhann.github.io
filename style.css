@@ -782,6 +782,71 @@ a:hover {
     content: ":";
 }
 
+/* ----- Skills badges ----- */
+
+.skills-cat {
+    margin-bottom: 1rem;
+}
+
+.skills-cat:last-child {
+    margin-bottom: 0;
+}
+
+.skills-cat__label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+}
+
+.skills-cat__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-badge {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: inherit;
+    cursor: default;
+    user-select: none;
+    transition: transform 0.15s ease;
+}
+
+@media (hover: hover) {
+    .skill-badge:hover {
+        transform: translateY(-1px);
+    }
+}
+
+.skill-badge--lang {
+    background: rgba(11, 74, 138, 0.1);
+    color: var(--blue);
+}
+
+.skill-badge--web {
+    background: rgba(11, 74, 138, 0.07);
+    color: rgba(11, 74, 138, 0.85);
+}
+
+.skill-badge--tools {
+    background: var(--wash-navy);
+    color: var(--navy);
+}
+
+.skill-badge--soft {
+    background: transparent;
+    color: var(--gold);
+    border: 1.5px solid rgba(184, 161, 101, 0.4);
+}
+
 .list {
     margin: 0;
     padding-left: 1.15rem;
