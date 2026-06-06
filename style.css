@@ -10,11 +10,9 @@
     --muted: #78716C;
     --heading: #92400E;
     --gold: #B8A165;
-    --gold-light: #D6B85A;
     --gold-wash: rgba(184, 161, 101, 0.12);
     --gold-border: rgba(184, 161, 101, 0.25);
     --hairline: rgba(0, 0, 0, 0.06);
-    --hairline-strong: rgba(0, 0, 0, 0.1);
     --nav-bg: rgba(255, 255, 255, 0.72);
     --footer-bg: #1C1410;
     --footer-text: #D4A853;
@@ -24,7 +22,6 @@
 
     --radius-sm: 8px;
     --radius-md: 12px;
-    --radius-lg: 16px;
 
     --space-xs: 0.35rem;
     --space-sm: 0.75rem;
@@ -57,7 +54,6 @@
     --heading: #D4A853;
     --gold-wash: rgba(184, 161, 101, 0.1);
     --hairline: rgba(255, 255, 255, 0.08);
-    --hairline-strong: rgba(255, 255, 255, 0.12);
     --nav-bg: rgba(28, 20, 16, 0.82);
     --footer-bg: #120E0A;
 
@@ -110,6 +106,8 @@ svg {
 
 a {
     color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
 }
 
 .visually-hidden {
@@ -221,12 +219,19 @@ a {
     transition: background-color 0.2s, color 0.2s;
 }
 
-.site-nav__list a:hover {
+@media (hover: hover) {
+    .site-nav__list a:hover {
+        background: var(--gold-wash);
+        color: var(--heading);
+    }
+}
+
+.site-nav__list a.active {
     background: var(--gold-wash);
     color: var(--heading);
 }
 
-.site-nav__list a.active {
+.site-nav__list a:focus-visible {
     background: var(--gold-wash);
     color: var(--heading);
 }
@@ -246,9 +251,11 @@ a {
     transition: background 0.2s, color 0.2s;
 }
 
-.theme-toggle:hover {
-    background: var(--gold-wash);
-    color: var(--gold);
+@media (hover: hover) {
+    .theme-toggle:hover {
+        background: var(--gold-wash);
+        color: var(--gold);
+    }
 }
 
 .theme-toggle:focus-visible {
@@ -292,9 +299,11 @@ a {
     transition: background 0.2s, color 0.2s;
 }
 
-.site-nav__toggle:hover {
-    background: var(--gold-wash);
-    color: var(--gold);
+@media (hover: hover) {
+    .site-nav__toggle:hover {
+        background: var(--gold-wash);
+        color: var(--gold);
+    }
 }
 
 .site-nav__toggle:focus-visible {
@@ -398,7 +407,7 @@ a {
     .hero__title .char {
         opacity: 0;
         transform: translateY(8px);
-        animation: char-reveal 0.45s ease-out forwards;
+        animation: char-reveal 0.45s var(--ease-out) forwards;
     }
 }
 
@@ -415,6 +424,8 @@ a {
     font-size: clamp(1rem, 2.2vw, 1.1rem);
     font-weight: 500;
     color: var(--muted);
+    line-height: 1.55;
+    opacity: 0.9;
 }
 
 .hero__links {
@@ -448,10 +459,12 @@ a {
         transform 0.2s;
 }
 
-.hero__link:hover {
-    border-color: var(--gold);
-    color: var(--heading);
-    box-shadow: var(--shadow-sm);
+@media (hover: hover) {
+    .hero__link:hover {
+        border-color: var(--gold);
+        color: var(--heading);
+        box-shadow: var(--shadow-sm);
+    }
 }
 
 .hero__link:active {
@@ -539,7 +552,7 @@ a {
 .section-title__line path {
     stroke-dasharray: 200;
     stroke-dashoffset: 200;
-    transition: stroke-dashoffset 0.8s ease-out;
+    transition: stroke-dashoffset 0.8s var(--ease-out);
 }
 
 .section-title.is-drawn .section-title__line path {
@@ -563,7 +576,7 @@ a {
     background: linear-gradient(to bottom, var(--gold), transparent);
     transform-origin: top;
     transform: scaleY(0);
-    transition: transform 0.6s ease-out;
+    transition: transform 0.6s var(--ease-out);
 }
 
 .timeline.is-visible .timeline__line {
@@ -589,7 +602,7 @@ a {
     background: var(--gold);
     box-shadow: 0 0 0 4px var(--gold-wash);
     transform: scale(0);
-    transition: transform 0.4s ease-out;
+    transition: transform 0.4s var(--ease-out);
 }
 
 .timeline.is-visible .timeline__dot {
@@ -717,8 +730,10 @@ a {
     color: var(--heading);
 }
 
-.card__links a:hover {
-    text-decoration: underline;
+@media (hover: hover) {
+    .card__links a:hover {
+        text-decoration: underline;
+    }
 }
 
 /* ============================================================
@@ -761,9 +776,11 @@ a {
     transition: transform 0.15s, background 0.15s;
 }
 
-.skill-badge:hover {
-    transform: translateY(-1px);
-    background: rgba(184, 161, 101, 0.18);
+@media (hover: hover) {
+    .skill-badge:hover {
+        transform: translateY(-1px);
+        background: rgba(184, 161, 101, 0.18);
+    }
 }
 
 .skill-badge--soft {
@@ -772,8 +789,10 @@ a {
     border: 1.5px solid var(--gold);
 }
 
-.skill-badge--soft:hover {
-    background: var(--gold-wash);
+@media (hover: hover) {
+    .skill-badge--soft:hover {
+        background: var(--gold-wash);
+    }
 }
 
 /* ============================================================
@@ -803,9 +822,11 @@ a {
         box-shadow 0.2s;
 }
 
-.contact-list:hover {
-    border-color: var(--gold);
-    box-shadow: var(--shadow-md);
+@media (hover: hover) {
+    .contact-list:hover {
+        border-color: var(--gold);
+        box-shadow: var(--shadow-md);
+    }
 }
 
 .contact-row {
@@ -826,9 +847,11 @@ a {
     transition: background 0.22s, color 0.22s;
 }
 
-.contact-row:hover .contact-icon {
-    background: rgba(184, 161, 101, 0.18);
-    color: var(--heading);
+@media (hover: hover) {
+    .contact-row:hover .contact-icon {
+        background: rgba(184, 161, 101, 0.18);
+        color: var(--heading);
+    }
 }
 
 .contact-label {
@@ -847,8 +870,10 @@ a {
     color: var(--text);
 }
 
-.contact-row a:hover {
-    text-decoration: underline;
+@media (hover: hover) {
+    .contact-row a:hover {
+        text-decoration: underline;
+    }
 }
 
 .contact-row span {
@@ -879,8 +904,10 @@ a {
     font-weight: 600;
 }
 
-.site-footer a:hover {
-    text-decoration: underline;
+@media (hover: hover) {
+    .site-footer a:hover {
+        text-decoration: underline;
+    }
 }
 
 .site-footer__meta {
@@ -900,8 +927,8 @@ a {
     opacity: 0;
     transform: translateY(24px);
     transition:
-        opacity 0.6s ease-out,
-        transform 0.6s ease-out;
+        opacity 0.6s var(--ease-out),
+        transform 0.6s var(--ease-out);
 }
 
 [data-reveal].is-visible {
@@ -939,7 +966,7 @@ a {
 
     .site-nav__list {
         position: fixed;
-        inset: calc(var(--header-h) + 3.25rem) 0 auto 0;
+        inset: var(--header-h) 0 auto 0;
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
