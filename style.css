@@ -144,8 +144,10 @@ a {
     text-underline-offset: 0.18em;
 }
 
-a:hover {
-    color: inherit;
+@media (hover: hover) {
+    a:hover {
+        color: inherit;
+    }
 }
 
 .visually-hidden {
@@ -241,18 +243,26 @@ a:hover {
     background: transparent;
     color: var(--gold);
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
-.theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #f5ead4;
-    border-color: rgba(184, 161, 101, 0.55);
+@media (hover: hover) {
+    .theme-toggle:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #f5ead4;
+        border-color: rgba(184, 161, 101, 0.55);
+    }
 }
 
-:root[data-theme="dark"] .theme-toggle:hover {
-    color: var(--navy);
-    background: rgba(184, 161, 101, 0.88);
+.theme-toggle:active {
+    transform: scale(0.93);
+}
+
+@media (hover: hover) {
+    :root[data-theme="dark"] .theme-toggle:hover {
+        color: var(--navy);
+        background: rgba(184, 161, 101, 0.88);
+    }
 }
 
 .theme-toggle:focus-visible {
@@ -294,18 +304,26 @@ a:hover {
     color: var(--gold);
     cursor: pointer;
     place-items: center;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
-.site-nav__toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #f5ead4;
-    border-color: rgba(184, 161, 101, 0.55);
+@media (hover: hover) {
+    .site-nav__toggle:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #f5ead4;
+        border-color: rgba(184, 161, 101, 0.55);
+    }
 }
 
-:root[data-theme="dark"] .site-nav__toggle:hover {
-    color: var(--navy);
-    background: rgba(184, 161, 101, 0.88);
+.site-nav__toggle:active {
+    transform: scale(0.93);
+}
+
+@media (hover: hover) {
+    :root[data-theme="dark"] .site-nav__toggle:hover {
+        color: var(--navy);
+        background: rgba(184, 161, 101, 0.88);
+    }
 }
 
 .site-nav__toggle:focus-visible {
@@ -363,9 +381,15 @@ a:hover {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.site-nav__list a:hover {
-    background: rgba(255, 255, 255, 0.09);
-    color: #f5ead4;
+@media (hover: hover) {
+    .site-nav__list a:hover {
+        background: rgba(255, 255, 255, 0.09);
+        color: #f5ead4;
+    }
+}
+
+.site-nav__list a:active {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .site-nav__list a:focus-visible {
@@ -591,7 +615,8 @@ a:hover {
         border-color 0.2s ease,
         color 0.2s ease,
         background-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
 }
 
 :root[data-theme="dark"] .hero__link {
@@ -600,11 +625,17 @@ a:hover {
     color: var(--text);
 }
 
-.hero__link:hover {
-    border-color: rgba(11, 74, 138, 0.55);
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.88);
-    box-shadow: 0 2px 14px rgba(26, 26, 46, 0.08);
+@media (hover: hover) {
+    .hero__link:hover {
+        border-color: rgba(11, 74, 138, 0.55);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 2px 14px rgba(26, 26, 46, 0.08);
+    }
+}
+
+.hero__link:active {
+    transform: scale(0.97);
 }
 
 .skill-label {
@@ -612,11 +643,13 @@ a:hover {
     font-weight: 700;
 }
 
-:root[data-theme="dark"] .hero__link:hover {
-    color: var(--text);
-    background: rgba(22, 22, 42, 0.88);
-    border-color: rgba(184, 161, 101, 0.5);
-    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+@media (hover: hover) {
+    :root[data-theme="dark"] .hero__link:hover {
+        color: var(--text);
+        background: rgba(22, 22, 42, 0.88);
+        border-color: rgba(184, 161, 101, 0.5);
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+    }
 }
 
 .hero__link:focus-visible {
@@ -688,8 +721,10 @@ a:hover {
     padding-block: var(--space-xl);
 }
 
-.layout a:hover {
-    text-decoration: underline;
+@media (hover: hover) {
+    .layout a:hover {
+        text-decoration: underline;
+    }
 }
 
 .layout--narrow {
@@ -758,10 +793,16 @@ a:hover {
         background-color 0.35s ease;
 }
 
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
-    border-color: var(--gold);
+@media (hover: hover) {
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+        border-color: var(--gold);
+    }
+}
+
+.card:active {
+    transform: scale(0.98);
 }
 
 .card__title {
@@ -772,7 +813,13 @@ a:hover {
     transition: color 0.22s ease;
 }
 
-.card:hover .card__title {
+@media (hover: hover) {
+    .card:hover .card__title {
+        color: var(--gold);
+    }
+}
+
+.card:active .card__title {
     color: var(--gold);
 }
 
@@ -918,10 +965,16 @@ a:hover {
         background-color 0.35s ease;
 }
 
-.contact-list:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
-    border-color: var(--gold);
+@media (hover: hover) {
+    .contact-list:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+        border-color: var(--gold);
+    }
+}
+
+.contact-list:active {
+    transform: scale(0.98);
 }
 
 .contact-row {
@@ -942,7 +995,14 @@ a:hover {
     transition: background-color 0.22s ease, color 0.22s ease;
 }
 
-.contact-row:hover .contact-icon {
+@media (hover: hover) {
+    .contact-row:hover .contact-icon {
+        background: var(--wash-gold);
+        color: var(--gold);
+    }
+}
+
+.contact-row:active .contact-icon {
     background: var(--wash-gold);
     color: var(--gold);
 }
@@ -964,8 +1024,10 @@ a:hover {
     color: inherit;
 }
 
-.contact-row a:hover {
-    text-decoration: underline;
+@media (hover: hover) {
+    .contact-row a:hover {
+        text-decoration: underline;
+    }
 }
 
 .site-footer {
@@ -988,8 +1050,10 @@ a:hover {
     font-weight: 600;
 }
 
-.site-footer a:hover {
-    text-decoration: underline;
+@media (hover: hover) {
+    .site-footer a:hover {
+        text-decoration: underline;
+    }
 }
 
 .site-footer__meta {
