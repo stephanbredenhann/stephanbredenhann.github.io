@@ -344,19 +344,11 @@ a {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    min-height: min(90vh, 44rem);
+    min-height: 100svh;
     display: flex;
     align-items: center;
-    background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184, 161, 101, 0.08), transparent 60%),
-        linear-gradient(180deg, #FDF8F0 0%, var(--bg) 100%);
-    transition: background 0.4s;
-}
-
-:root[data-theme="dark"] .hero {
-    background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184, 161, 101, 0.06), transparent 60%),
-        linear-gradient(180deg, #251A12 0%, var(--bg) 100%);
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(184, 161, 101, 0.05) 50%, var(--bg) 100%);
+    transition: background 0.4s ease;
 }
 
 .hero__canvas {
@@ -370,8 +362,9 @@ a {
     position: relative;
     z-index: 1;
     max-width: var(--content-max);
-    margin: auto;
+    margin-inline: auto;
     padding: clamp(2.5rem, 8vw, 4rem) 1.25rem clamp(2rem, 6vw, 3rem);
+    width: 100%;
     text-align: center;
 }
 
@@ -599,7 +592,7 @@ section[id] {
 
 .timeline__dot {
     position: absolute;
-    left: -1.35rem;
+    left: -1.65rem;
     top: 0.5rem;
     width: 0.6rem;
     height: 0.6rem;

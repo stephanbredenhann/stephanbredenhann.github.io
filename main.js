@@ -41,7 +41,7 @@ function applyTheme(theme) {
 function resolveTheme() {
     const stored = getStoredTheme();
     if (stored === 'light' || stored === 'dark') return stored;
-    return getSystemTheme();
+    return 'dark';
 }
 
 function initTheme() {
@@ -116,6 +116,8 @@ if (canvas) {
     let particles = [];
     let w = 0;
     let h = 0;
+    let mouseX = 0;
+    let mouseY = 0;
 
     function createParticles() {
         const count = window.innerWidth < 768 ? 18 : 30;
@@ -143,6 +145,8 @@ if (canvas) {
         canvas.style.width = rect.width + 'px';
         canvas.style.height = rect.height + 'px';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        mouseX = w / 2;
+        mouseY = h / 2;
         createParticles();
     }
 
@@ -157,6 +161,12 @@ if (canvas) {
         }
     }
 
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+    });
+
     function update() {
         for (const p of particles) {
             p.x += p.vx;
@@ -165,6 +175,16 @@ if (canvas) {
             if (p.y > h + p.r) p.y = -p.r;
             if (p.x < -p.r) p.x = w + p.r;
             if (p.x > w + p.r) p.x = -p.r;
+            const dx = mouseX - p.x;
+            const dy = mouseY - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist > 20 && dist < 300) {
+                const force = 0.00015;
+                p.vx += dx * force;
+                p.vy += dy * force;
+            }
+            p.vx *= 0.9995;
+            p.vy *= 0.9995;
         }
     }
 

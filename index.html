@@ -22,7 +22,7 @@
                 if (s) {
                     dark = s === "dark";
                 } else {
-                    dark = !window.matchMedia || !window.matchMedia("(prefers-color-scheme: light)").matches;
+                    dark = true;
                 }
                 document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
                 document.documentElement.style.colorScheme = dark ? "dark" : "light";
@@ -238,56 +238,58 @@
             </div>
         </section>
 
-        <section id="skills" class="flow section" aria-labelledby="skills-heading">
-            <h2 id="skills-heading" class="section-title">Skills <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
-            <div class="cards">
-                <article class="card" data-reveal>
-                    <h3 class="card__title">Technical Skills</h3>
-                    <div class="skills-cat">
-                        <span class="skills-cat__label">Languages</span>
-                        <div class="skills-cat__badges">
-                            <span class="skill-badge">Python</span>
-                            <span class="skill-badge">JavaScript</span>
-                            <span class="skill-badge">HTML &amp; CSS</span>
-                            <span class="skill-badge">C++</span>
-                            <span class="skill-badge">C#</span>
+            <section id="skills" class="flow section" aria-labelledby="skills-heading">
+                <h2 id="skills-heading" class="section-title">Skills <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
+                <div class="cards">
+                    <article class="card" data-reveal>
+                        <h3 class="card__title">Technical Skills</h3>
+                        <div class="skills-cat">
+                            <span class="skills-cat__label">Languages</span>
+                            <div class="skills-cat__badges">
+                                <span class="skill-badge">Python</span>
+                                <span class="skill-badge">JavaScript</span>
+                                <span class="skill-badge">HTML &amp; CSS</span>
+                                <span class="skill-badge">C++</span>
+                                <span class="skill-badge">C#</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skills-cat">
-                        <span class="skills-cat__label">Web &amp; Development</span>
-                        <div class="skills-cat__badges">
-                            <span class="skill-badge">Front-End</span>
-                            <span class="skill-badge">Responsive Design</span>
-                            <span class="skill-badge">OOP</span>
-                            <span class="skill-badge">Debugging</span>
+                        <div class="skills-cat">
+                            <span class="skills-cat__label">Web &amp; Development</span>
+                            <div class="skills-cat__badges">
+                                <span class="skill-badge">Front-End</span>
+                                <span class="skill-badge">Responsive Design</span>
+                                <span class="skill-badge">OOP</span>
+                                <span class="skill-badge">Debugging</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skills-cat">
-                        <span class="skills-cat__label">Tools &amp; Systems</span>
-                        <div class="skills-cat__badges">
-                            <span class="skill-badge">Git &amp; GitHub</span>
-                            <span class="skill-badge">Linux</span>
-                            <span class="skill-badge">Windows</span>
-                            <span class="skill-badge">RDBMS</span>
-                            <span class="skill-badge">UML</span>
-                            <span class="skill-badge">Systems Design</span>
+                        <div class="skills-cat">
+                            <span class="skills-cat__label">Tools &amp; Systems</span>
+                            <div class="skills-cat__badges">
+                                <span class="skill-badge">Git &amp; GitHub</span>
+                                <span class="skill-badge">Linux</span>
+                                <span class="skill-badge">Windows</span>
+                                <span class="skill-badge">RDBMS</span>
+                                <span class="skill-badge">UML</span>
+                                <span class="skill-badge">Systems Design</span>
+                            </div>
                         </div>
-                    </div>
-                </article>
-                <article class="card" data-reveal>
-                    <h3 class="card__title">Soft Skills</h3>
-                    <div class="skills-cat">
-                        <div class="skills-cat__badges">
-                            <span class="skill-badge skill-badge--soft">Communication</span>
-                            <span class="skill-badge skill-badge--soft">Teamwork</span>
-                            <span class="skill-badge skill-badge--soft">Problem Solving</span>
-                            <span class="skill-badge skill-badge--soft">Adaptability</span>
-                            <span class="skill-badge skill-badge--soft">Time Management</span>
+                    </article>
+                    <article class="card" data-reveal>
+                        <h3 class="card__title">Soft Skills</h3>
+                        <div class="skills-cat">
+                            <div class="skills-cat__badges">
+                                <span class="skill-badge skill-badge--soft">Communication</span>
+                                <span class="skill-badge skill-badge--soft">Teamwork</span>
+                                <span class="skill-badge skill-badge--soft">Problem Solving</span>
+                                <span class="skill-badge skill-badge--soft">Adaptability</span>
+                                <span class="skill-badge skill-badge--soft">Time Management</span>
+                                <span class="skill-badge skill-badge--soft">Critical Thinking</span>
+                                <span class="skill-badge skill-badge--soft">Leadership</span>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            </div>
-        </section>
+                    </article>
+                </div>
+            </section>
 
         <section id="contact" class="flow section section--contact" aria-labelledby="contact-heading">
             <h2 id="contact-heading" class="section-title">Contact <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
