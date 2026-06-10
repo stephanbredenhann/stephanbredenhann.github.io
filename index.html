@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-ZA">
+<html lang="en-ZA" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
 
     <meta name="description" content="Third-year BIT student (Information Science) at the University of Pretoria. CV, projects, and contact details.">
 
-    <meta name="theme-color" content="#FAFAF5">
+    <meta name="theme-color" content="#1C1410">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,11 +45,11 @@
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <canvas class="page-canvas" data-particle-canvas aria-hidden="true"></canvas>
 
     <header class="site-header">
         <nav class="site-nav" id="site-nav" aria-label="Primary">
             <div class="site-nav__inner">
-                <div class="site-nav__spacer" aria-hidden="true"></div>
                 <ul id="site-nav-menu" class="site-nav__list" data-nav-menu>
                     <li><a href="#landing">Home</a></li>
                     <li><a href="#experience">Experience</a></li>
@@ -63,9 +63,9 @@
                         type="button"
                         class="theme-toggle"
                         data-theme-toggle
-                        aria-pressed="false"
-                        aria-label="Switch to dark mode"
-                        title="Switch to dark mode"
+                        aria-pressed="true"
+                        aria-label="Switch to light mode"
+                        title="Switch to light mode"
                     >
                         <svg class="icon theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.45 5.45 0 0 1-5.86-5 5.39 5.39 0 0 1 3.24-5.2c-.44-.06-.9-.1-1.36-.1Z"/>
@@ -83,28 +83,28 @@
                             <path fill="none" d="M12 2.25v2.5M12 19.25v2.5M2.25 12h2.5M19.25 12h2.5M5.4 5.4l1.77 1.77M16.83 16.83l1.77 1.77M18.6 5.4l-1.77 1.77M7.4 16.83l-1.77 1.77"/>
                         </svg>
                     </button>
-                    <button
-                        type="button"
-                        class="site-nav__toggle"
-                        aria-expanded="false"
-                        aria-controls="site-nav-menu"
-                        data-nav-toggle
-                    >
-                        <span class="site-nav__toggle-box" aria-hidden="true">
-                            <span class="site-nav__toggle-line"></span>
-                            <span class="site-nav__toggle-line"></span>
-                            <span class="site-nav__toggle-line"></span>
-                        </span>
-                        <span class="visually-hidden">Menu</span>
-                    </button>
                 </div>
             </div>
+            <button
+                type="button"
+                class="mobile-nav-fab"
+                aria-expanded="false"
+                aria-controls="site-nav-menu"
+                data-nav-toggle
+            >
+                <span class="mobile-nav-fab__box" aria-hidden="true">
+                    <span class="mobile-nav-fab__line"></span>
+                    <span class="mobile-nav-fab__line"></span>
+                    <span class="mobile-nav-fab__line"></span>
+                </span>
+                <span class="visually-hidden">Menu</span>
+            </button>
         </nav>
+        <div class="mobile-nav-backdrop" data-nav-backdrop hidden></div>
     </header>
 
     <main id="main">
         <section id="landing" class="hero" aria-labelledby="hero-heading">
-            <canvas class="hero__canvas" data-particle-canvas aria-hidden="true"></canvas>
             <div class="hero__inner">
                 <div class="hero__copy">
                     <p class="hero__eyebrow">Portfolio &amp; CV</p>
@@ -240,53 +240,77 @@
 
             <section id="skills" class="flow section" aria-labelledby="skills-heading">
                 <h2 id="skills-heading" class="section-title">Skills <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
-                <div class="cards">
-                    <article class="card" data-reveal>
-                        <h3 class="card__title">Technical Skills</h3>
-                        <div class="skills-cat">
-                            <span class="skills-cat__label">Languages</span>
-                            <div class="skills-cat__badges">
-                                <span class="skill-badge">Python</span>
-                                <span class="skill-badge">JavaScript</span>
-                                <span class="skill-badge">HTML &amp; CSS</span>
-                                <span class="skill-badge">C++</span>
-                                <span class="skill-badge">C#</span>
+                <div class="skills-layout">
+                    <article class="skills-panel skills-panel--technical card" data-reveal>
+                        <h3 class="skills-panel__title">Technical Skills</h3>
+                        <dl class="skill-details">
+                            <div class="skill-detail skill-detail--languages">
+                                <dt class="skill-detail__term">Programming Languages</dt>
+                                <dd class="skill-detail__desc">
+                                    <div class="skill-detail__badges" aria-label="Programming languages">
+                                        <span class="skill-badge">Python</span>
+                                        <span class="skill-badge">JavaScript</span>
+                                        <span class="skill-badge">HTML</span>
+                                        <span class="skill-badge">CSS</span>
+                                        <span class="skill-badge">C++</span>
+                                        <span class="skill-badge">C#</span>
+                                    </div>
+                                </dd>
                             </div>
-                        </div>
-                        <div class="skills-cat">
-                            <span class="skills-cat__label">Web &amp; Development</span>
-                            <div class="skills-cat__badges">
-                                <span class="skill-badge">Front-End</span>
-                                <span class="skill-badge">Responsive Design</span>
-                                <span class="skill-badge">OOP</span>
-                                <span class="skill-badge">Debugging</span>
+                            <div class="skill-detail">
+                                <dt class="skill-detail__term">Web Development</dt>
+                                <dd class="skill-detail__desc">Strong knowledge of front-end technologies (HTML, CSS, JavaScript), responsive design, and web design principles.</dd>
                             </div>
-                        </div>
-                        <div class="skills-cat">
-                            <span class="skills-cat__label">Tools &amp; Systems</span>
-                            <div class="skills-cat__badges">
-                                <span class="skill-badge">Git &amp; GitHub</span>
-                                <span class="skill-badge">Linux</span>
-                                <span class="skill-badge">Windows</span>
-                                <span class="skill-badge">RDBMS</span>
-                                <span class="skill-badge">UML</span>
-                                <span class="skill-badge">Systems Design</span>
+                            <div class="skill-detail">
+                                <dt class="skill-detail__term">Software Development</dt>
+                                <dd class="skill-detail__desc">Familiar with basic software engineering practices, object-oriented programming, and debugging techniques.</dd>
                             </div>
-                        </div>
+                            <div class="skill-detail">
+                                <dt class="skill-detail__term">Operating Systems</dt>
+                                <dd class="skill-detail__desc">Comfortable working in Windows and Linux environments.</dd>
+                            </div>
+                            <div class="skill-detail">
+                                <dt class="skill-detail__term">Version Control</dt>
+                                <dd class="skill-detail__desc">Familiar with Git and GitHub for version control and collaboration.</dd>
+                            </div>
+                            <div class="skill-detail">
+                                <dt class="skill-detail__term">Database Management</dt>
+                                <dd class="skill-detail__desc">Familiar with Relational Database Management Systems.</dd>
+                            </div>
+                            <div class="skill-detail">
+                                <dt class="skill-detail__term">Systems Design</dt>
+                                <dd class="skill-detail__desc">Familiar with systems design principles.</dd>
+                            </div>
+                            <div class="skill-detail">
+                                <dt class="skill-detail__term">UML</dt>
+                                <dd class="skill-detail__desc">Familiar with Unified Modeling Language for system design and documentation.</dd>
+                            </div>
+                        </dl>
                     </article>
-                    <article class="card" data-reveal>
-                        <h3 class="card__title">Soft Skills</h3>
-                        <div class="skills-cat">
-                            <div class="skills-cat__badges">
-                                <span class="skill-badge skill-badge--soft">Communication</span>
-                                <span class="skill-badge skill-badge--soft">Teamwork</span>
-                                <span class="skill-badge skill-badge--soft">Problem Solving</span>
-                                <span class="skill-badge skill-badge--soft">Adaptability</span>
-                                <span class="skill-badge skill-badge--soft">Time Management</span>
-                                <span class="skill-badge skill-badge--soft">Critical Thinking</span>
-                                <span class="skill-badge skill-badge--soft">Leadership</span>
+                    <article class="skills-panel skills-panel--soft card" data-reveal>
+                        <h3 class="skills-panel__title">Soft Skills</h3>
+                        <dl class="skill-details skill-details--soft">
+                            <div class="skill-detail skill-detail--soft">
+                                <dt class="skill-detail__term">Communication</dt>
+                                <dd class="skill-detail__desc">Effective communication skills developed through both academic presentations and customer-facing roles.</dd>
                             </div>
-                        </div>
+                            <div class="skill-detail skill-detail--soft">
+                                <dt class="skill-detail__term">Teamwork</dt>
+                                <dd class="skill-detail__desc">Ability to work collaboratively in team settings, honed through various work and academic group projects.</dd>
+                            </div>
+                            <div class="skill-detail skill-detail--soft">
+                                <dt class="skill-detail__term">Problem Solving</dt>
+                                <dd class="skill-detail__desc">Strong analytical thinking skills, enhanced by university coursework and hands-on experience with practical challenges.</dd>
+                            </div>
+                            <div class="skill-detail skill-detail--soft">
+                                <dt class="skill-detail__term">Adaptability</dt>
+                                <dd class="skill-detail__desc">Flexible and capable of learning new technologies and methodologies quickly in dynamic environments.</dd>
+                            </div>
+                            <div class="skill-detail skill-detail--soft">
+                                <dt class="skill-detail__term">Time Management</dt>
+                                <dd class="skill-detail__desc">Effective at managing academic workload alongside part-time work, balancing multiple responsibilities.</dd>
+                            </div>
+                        </dl>
                     </article>
                 </div>
             </section>

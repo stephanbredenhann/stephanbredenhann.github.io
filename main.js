@@ -14,14 +14,6 @@ function getStoredTheme() {
     }
 }
 
-function getSystemTheme() {
-    try {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    } catch {
-        return 'dark';
-    }
-}
-
 function applyTheme(theme) {
     const isDark = theme === 'dark';
     const value = isDark ? 'dark' : 'light';
@@ -56,14 +48,6 @@ themeBtn?.addEventListener('click', () => {
     applyTheme(next);
 });
 
-const mqScheme = window.matchMedia('(prefers-color-scheme: dark)');
-function onSystemThemeChange() {
-    if (getStoredTheme() === null) {
-        applyTheme(getSystemTheme());
-    }
-}
-mqScheme.addEventListener('change', onSystemThemeChange);
-
 initTheme();
 
 // ==================== 2. NAV DRAWER ====================
@@ -71,18 +55,25 @@ initTheme();
 const siteNav = document.getElementById('site-nav');
 const navToggle = document.querySelector('[data-nav-toggle]');
 const navMenu = document.querySelector('[data-nav-menu]');
+const navBackdrop = document.querySelector('[data-nav-backdrop]');
 
 function setNavOpen(open) {
     if (!siteNav || !navToggle) return;
     navToggle.setAttribute('aria-expanded', String(open));
     siteNav.classList.toggle('is-open', open);
     document.body.classList.toggle('nav-open', open);
+    if (navBackdrop) {
+        navBackdrop.classList.toggle('is-visible', open);
+        navBackdrop.hidden = !open;
+    }
 }
 
 navToggle?.addEventListener('click', () => {
     const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
     setNavOpen(!isOpen);
 });
+
+navBackdrop?.addEventListener('click', () => setNavOpen(false));
 
 navMenu?.addEventListener('click', (e) => {
     const link = e.target.closest('a');
@@ -116,58 +107,104 @@ if (canvas) {
     let particles = [];
     let w = 0;
     let h = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
     let mouseX = 0;
     let mouseY = 0;
+    let touchFadeTimer = null;
+
+    function setPointer(x, y) {
+        targetMouseX = x;
+        targetMouseY = y;
+    }
 
     function createParticles() {
-        const count = window.innerWidth < 768 ? 18 : 30;
+        const count = window.innerWidth < 768 ? 24 : 40;
         particles = [];
         for (let i = 0; i < count; i++) {
+            const baseR = Math.random() * 2.5 + 1.5;
+            const baseOpacity = Math.random() * 0.35 + 0.1;
             particles.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
-                r: Math.random() * 2.5 + 1.5,
+                baseR,
+                baseOpacity,
+                r: baseR,
                 vx: (Math.random() - 0.5) * 0.35,
                 vy: -(Math.random() * 0.35 + 0.1),
-                opacity: Math.random() * 0.35 + 0.1,
+                opacity: baseOpacity,
                 color: colors[Math.floor(Math.random() * colors.length)]
             });
         }
     }
 
+    function updateCanvasBg() {
+        const styles = getComputedStyle(document.documentElement);
+        const bg = styles.getPropertyValue('--bg').trim() || '#1C1410';
+        canvas.style.background = bg;
+    }
+
     function resize() {
-        const rect = canvas.parentElement.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
-        w = rect.width;
-        h = rect.height;
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        canvas.style.width = rect.width + 'px';
-        canvas.style.height = rect.height + 'px';
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        mouseX = w / 2;
-        mouseY = h / 2;
+        updateCanvasBg();
+        targetMouseX = w / 2;
+        targetMouseY = h / 2;
+        mouseX = targetMouseX;
+        mouseY = targetMouseY;
         createParticles();
     }
 
     function draw() {
         ctx.clearRect(0, 0, w, h);
         for (const p of particles) {
+            const dx = mouseX - p.x;
+            const dy = mouseY - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const proximity = Math.max(0, 1 - dist / 200);
+            const drawR = p.baseR + proximity * 1.5;
+            const drawOpacity = Math.min(0.85, p.baseOpacity + proximity * 0.4);
+
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, drawR, 0, Math.PI * 2);
             ctx.fillStyle = p.color;
-            ctx.globalAlpha = p.opacity;
+            ctx.globalAlpha = drawOpacity;
             ctx.fill();
         }
+        ctx.globalAlpha = 1;
     }
 
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
+    document.addEventListener('mousemove', (e) => {
+        setPointer(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            setPointer(e.touches[0].clientX, e.touches[0].clientY);
+            clearTimeout(touchFadeTimer);
+            touchFadeTimer = setTimeout(() => {
+                setPointer(w / 2, h / 2);
+            }, 1000);
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+        clearTimeout(touchFadeTimer);
+        touchFadeTimer = setTimeout(() => {
+            setPointer(w / 2, h / 2);
+        }, 1000);
     });
 
     function update() {
+        mouseX += (targetMouseX - mouseX) * 0.08;
+        mouseY += (targetMouseY - mouseY) * 0.08;
+
         for (const p of particles) {
             p.x += p.vx;
             p.y += p.vy;
@@ -175,14 +212,21 @@ if (canvas) {
             if (p.y > h + p.r) p.y = -p.r;
             if (p.x < -p.r) p.x = w + p.r;
             if (p.x > w + p.r) p.x = -p.r;
+
             const dx = mouseX - p.x;
             const dy = mouseY - p.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist > 20 && dist < 300) {
-                const force = 0.00015;
+
+            if (dist < 40) {
+                const force = -0.0008;
+                p.vx += dx * force;
+                p.vy += dy * force;
+            } else if (dist >= 80 && dist < 250) {
+                const force = 0.0004;
                 p.vx += dx * force;
                 p.vy += dy * force;
             }
+
             p.vx *= 0.9995;
             p.vy *= 0.9995;
         }
@@ -224,6 +268,11 @@ if (canvas) {
     });
 
     window.addEventListener('resize', resize);
+
+    new MutationObserver(() => updateCanvasBg()).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+    });
 }
 
 // ==================== 5. NAME CHARACTER REVEAL ====================
