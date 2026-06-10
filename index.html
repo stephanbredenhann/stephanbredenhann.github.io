@@ -1,32 +1,37 @@
 <!DOCTYPE html>
-<html lang="en-ZA">
+<html lang="en-ZA" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Stephan Bredenhann — CV</title>
+    <title>Stephan Bredenhann &mdash; CV</title>
 
-    
-    <meta name="description" content="Third-year BIT student (Information Science) at the University of Pretoria. CV and contact details.">
+    <meta name="description" content="Third-year BIT student (Information Science) at the University of Pretoria. CV, projects, and contact details.">
 
-    <meta name="theme-color" content="#0c0c16">
+    <meta name="theme-color" content="#1C1410">
 
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
     <script>
         (function () {
             try {
                 var k = "sb-theme";
                 var s = localStorage.getItem(k);
-                // Default to dark unless user explicitly chose light.
-                var dark = s ? s === "dark" : true;
+                var dark;
+                if (s) {
+                    dark = s === "dark";
+                } else {
+                    dark = true;
+                }
                 document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
                 document.documentElement.style.colorScheme = dark ? "dark" : "light";
                 var meta = document.querySelector('meta[name="theme-color"]');
-                if (meta) meta.content = dark ? "#0c0c16" : "#1a1a2e";
+                if (meta) meta.content = dark ? "#1C1410" : "#FAFAF5";
             } catch (e) {}
         })();
     </script>
 
-    
     <meta property="og:type" content="website">
     <meta property="og:title" content="Stephan Bredenhann">
     <meta property="og:description" content="Third-year BIT student (Information Science) at the University of Pretoria.">
@@ -40,17 +45,17 @@
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <canvas class="page-canvas" data-particle-canvas aria-hidden="true"></canvas>
 
     <header class="site-header">
         <nav class="site-nav" id="site-nav" aria-label="Primary">
             <div class="site-nav__inner">
-                <div class="site-nav__spacer" aria-hidden="true"></div>
                 <ul id="site-nav-menu" class="site-nav__list" data-nav-menu>
                     <li><a href="#landing">Home</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#education">Education</a></li>
-                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="site-nav__controls">
@@ -58,9 +63,9 @@
                         type="button"
                         class="theme-toggle"
                         data-theme-toggle
-                        aria-pressed="false"
-                        aria-label="Switch to dark mode"
-                        title="Switch to dark mode"
+                        aria-pressed="true"
+                        aria-label="Switch to light mode"
+                        title="Switch to light mode"
                     >
                         <svg class="icon theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.45 5.45 0 0 1-5.86-5 5.39 5.39 0 0 1 3.24-5.2c-.44-.06-.9-.1-1.36-.1Z"/>
@@ -78,278 +83,317 @@
                             <path fill="none" d="M12 2.25v2.5M12 19.25v2.5M2.25 12h2.5M19.25 12h2.5M5.4 5.4l1.77 1.77M16.83 16.83l1.77 1.77M18.6 5.4l-1.77 1.77M7.4 16.83l-1.77 1.77"/>
                         </svg>
                     </button>
-                    <button
-                        type="button"
-                        class="site-nav__toggle"
-                        aria-expanded="false"
-                        aria-controls="site-nav-menu"
-                        data-nav-toggle
-                    >
-                        <span class="site-nav__toggle-box" aria-hidden="true">
-                            <span class="site-nav__toggle-line"></span>
-                            <span class="site-nav__toggle-line"></span>
-                            <span class="site-nav__toggle-line"></span>
-                        </span>
-                        <span class="visually-hidden">Menu</span>
-                    </button>
                 </div>
             </div>
+            <button
+                type="button"
+                class="mobile-nav-fab"
+                aria-expanded="false"
+                aria-controls="site-nav-menu"
+                data-nav-toggle
+            >
+                <span class="mobile-nav-fab__box" aria-hidden="true">
+                    <span class="mobile-nav-fab__line"></span>
+                    <span class="mobile-nav-fab__line"></span>
+                    <span class="mobile-nav-fab__line"></span>
+                </span>
+                <span class="visually-hidden">Menu</span>
+            </button>
         </nav>
+        <div class="mobile-nav-backdrop" data-nav-backdrop hidden></div>
     </header>
 
     <main id="main">
         <section id="landing" class="hero" aria-labelledby="hero-heading">
             <div class="hero__inner">
                 <div class="hero__copy">
-                    <div class="hero__copy-surface">
-                        <p class="hero__eyebrow">Portfolio &amp; CV</p>
-                        <h1 id="hero-heading" class="hero__title">Stephan Bredenhann</h1>
-                        <p class="hero__tagline">
-                            Third-year BIT · Information Science · University of Pretoria
-                        </p>
+                    <p class="hero__eyebrow">Portfolio &amp; CV</p>
+                    <h1 id="hero-heading" class="hero__title" data-name-reveal>Stephan Bredenhann</h1>
+                    <p class="hero__tagline">
+                        Third-year BIT &middot; Information Systems &middot; University of Pretoria
+                    </p>
 
-                        
-                        <ul class="hero__links" aria-label="Social links">
-                            <li>
-                                <a
-                                    class="hero__link"
-                                    href="https://github.com/stephanbredenhann"
-                                    target="_blank"
-                                    rel="noopener noreferrer me"
-                                >
-                                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.5 3.58 10.15 8.55 11.8.63.12.86-.27.86-.6 0-.3-.01-1.12-.01-2.2-3.48.76-4.22-1.68-4.22-1.68-.57-1.45-1.4-1.84-1.4-1.84-1.14-.78.09-.76.09-.76 1.26.09 1.93 1.3 1.93 1.3 1.12 1.92 2.94 1.37 3.65 1.05.11-.83.44-1.37.8-1.68-2.78-.32-5.7-1.39-5.7-6.18 0-1.37.49-2.49 1.29-3.37-.13-.32-.56-1.61.12-3.36 0 0 1.05-.34 3.44 1.29a12 12 0 0 1 3.12-.42c1.06 0 2.12.14 3.12.42 2.39-1.63 3.44-1.29 3.44-1.29.68 1.75.25 3.04.12 3.36.8.88 1.29 2 1.29 3.37 0 4.8-2.93 5.85-5.73 6.16.45.39.85 1.15.85 2.32 0 1.68-.02 3.03-.02 3.44 0 .33.23.73.88.6A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-                                    GitHub
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="hero__link"
-                                    href="https://linkedin.com/in/stephan-bredenhann-a67803326"
-                                    target="_blank"
-                                    rel="noopener noreferrer me"
-                                >
-                                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.65-1.85 3.4-1.85 3.64 0 4.31 2.4 4.31 5.52v6.22ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.11 20.45H3.56V9h3.55v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.2.79 24 1.77 24h20.45c.98 0 1.78-.8 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-                                    LinkedIn
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="hero__art" aria-hidden="true">
-                    <svg class="hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="hero-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#003366" stop-opacity="0.95"/>
-                                <stop offset="100%" stop-color="#b8a165" stop-opacity="0.9"/>
-                            </linearGradient>
-                            <radialGradient id="hero-glow-fill" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" stop-color="#b8a165" stop-opacity="0.45"/>
-                                <stop offset="55%" stop-color="#003366" stop-opacity="0.15"/>
-                                <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0"/>
-                            </radialGradient>
-                        </defs>
-                        <circle class="hero__glow-disc" cx="200" cy="160" r="86" fill="url(#hero-glow-fill)"/>
-                        <circle cx="200" cy="160" r="118" fill="none" stroke="#1a1a2e" stroke-width="1.25" stroke-opacity="0.35"/>
-                        <circle cx="200" cy="160" r="88" fill="none" stroke="#003366" stroke-width="1" stroke-opacity="0.4"/>
-                        <circle cx="200" cy="160" r="58" fill="none" stroke="#b8a165" stroke-width="1" stroke-opacity="0.45"/>
-                        <path class="hero__orbit" d="M 42 160 A 158 158 0 0 1 358 160" fill="none" stroke="url(#hero-grad)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="12 18"/>
-                        <path d="M 72 220 L 328 100" stroke="#1a1a2e" stroke-width="0.9" stroke-opacity="0.25"/>
-                        <path d="M 100 70 L 300 250" stroke="#003366" stroke-width="0.75" stroke-opacity="0.3"/>
-                        <circle cx="320" cy="90" r="6" fill="none" stroke="#b8a165" stroke-width="1.2" stroke-opacity="0.5"/>
-                        <circle cx="85" cy="230" r="4" fill="none" stroke="#003366" stroke-width="1" stroke-opacity="0.45"/>
-                        <circle cx="200" cy="48" r="3.5" fill="none" stroke="#b8a165" stroke-width="1" stroke-opacity="0.4"/>
-                    </svg>
+                    <ul class="hero__links" aria-label="Social links">
+                        <li>
+                            <a
+                                class="hero__link"
+                                href="https://github.com/stephanbredenhann"
+                                target="_blank"
+                                rel="noopener noreferrer me"
+                            >
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.5 3.58 10.15 8.55 11.8.63.12.86-.27.86-.6 0-.3-.01-1.12-.01-2.2-3.48.76-4.22-1.68-4.22-1.68-.57-1.45-1.4-1.84-1.4-1.84-1.14-.78.09-.76.09-.76 1.26.09 1.93 1.3 1.93 1.3 1.12 1.92 2.94 1.37 3.65 1.05.11-.83.44-1.37.8-1.68-2.78-.32-5.7-1.39-5.7-6.18 0-1.37.49-2.49 1.29-3.37-.13-.32-.56-1.61.12-3.36 0 0 1.05-.34 3.44 1.29a12 12 0 0 1 3.12-.42c1.06 0 2.12.14 3.12.42 2.39-1.63 3.44-1.29 3.44-1.29.68 1.75.25 3.04.12 3.36.8.88 1.29 2 1.29 3.37 0 4.8-2.93 5.85-5.73 6.16.45.39.85 1.15.85 2.32 0 1.68-.02 3.03-.02 3.44 0 .33.23.73.88.6A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+                                GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                class="hero__link"
+                                href="https://linkedin.com/in/stephan-bredenhann-a67803326"
+                                target="_blank"
+                                rel="noopener noreferrer me"
+                            >
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.65-1.85 3.4-1.85 3.64 0 4.31 2.4 4.31 5.52v6.22ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.11 20.45H3.56V9h3.55v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.2.79 24 1.77 24h20.45c.98 0 1.78-.8 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+                                LinkedIn
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#experience" class="hero__scroll" aria-label="Scroll to Experience section">
+                        <span class="hero__scroll-chevron" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         </section>
 
         <div class="layout">
+
             <section id="experience" class="flow section" aria-labelledby="experience-heading">
-                <h2 id="experience-heading" class="section-title">Experience</h2>
-                <div class="cards">
-                    <article class="card">
-                        <h3 class="card__title">Buffelsfontein Beesboerdery</h3>
-                        <p><span class="label">Role</span> Part-Time Bartender</p>
-                        <p><span class="label">Dates</span> March 2024 – Present</p>
-                        <p>
-                            Currently working part-time, gaining valuable skills in teamwork, customer service, and operational efficiency.
-                            This experience has enhanced my ability to balance work and study responsibilities effectively, while developing a hands-on understanding of daily operations.
-                        </p>
-                    </article>
-                    <article class="card">
-                        <h3 class="card__title">Various Hospitality Roles</h3>
-                        <p><span class="label">Role</span> Seasonal and Holiday Staff</p>
-                        <p><span class="label">Dates</span> 2020 – Present</p>
-                        <p>
-                            Over school and university holidays since 2020, I have worked in several hospitality roles, including positions in customer service, event support, and front-of-house tasks.
-                            These roles have improved my adaptability, communication skills, and ability to perform well in high-pressure environments.
-                        </p>
-                    </article>
-                </div>
-            </section>
+            <h2 id="experience-heading" class="section-title">Experience <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
+            <div class="timeline">
+                <div class="timeline__line" aria-hidden="true"></div>
 
-            <section id="education" class="flow section" aria-labelledby="education-heading">
-                <h2 id="education-heading" class="section-title">Education</h2>
-                <div class="cards">
-                    <article class="card">
-                        <h3 class="card__title">IEB National Senior Certificate (NSC)</h3>
-                        <p><span class="label">Institution</span> Independent Examinations Board (IEB)</p>
-                        <p><span class="label">Year</span> 2022</p>
-                        <p><span class="label">Average</span> 81% (3 Distinctions)</p>
+                <article class="timeline__entry" data-reveal>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <h3 class="timeline__title">Information Science Department Tutor</h3>
+                        <p class="timeline__meta">University of Pretoria &middot; Feb 2025 &ndash; Nov 2025</p>
+                        <p>Tutored first-year students in INL 110 and INL 120, assisting with coursework, and marking assignments.</p>
+                    </div>
+                </article>
+
+                <article class="timeline__entry" data-reveal>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <h3 class="timeline__title">Part-Time Bartender</h3>
+                        <p class="timeline__meta">Buffelsfontein Beesboerdery &middot; Mar 2024 &ndash; Present</p>
+                        <p>Currently working part-time, gaining valuable skills in teamwork, customer service, and operational efficiency. This experience has enhanced my ability to balance work and study responsibilities effectively.</p>
+                    </div>
+                </article>
+
+                <article class="timeline__entry" data-reveal>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <h3 class="timeline__title">Various Hospitality Roles</h3>
+                        <p class="timeline__meta">Seasonal and Holiday Staff &middot; 2020 &ndash; Present</p>
+                        <p>Over school and university holidays since 2020, I have worked in several hospitality roles. These roles have improved my adaptability, communication skills, and ability to perform well in high-pressure environments.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="education" class="flow section" aria-labelledby="education-heading">
+            <h2 id="education-heading" class="section-title">Education <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
+            <div class="timeline">
+                <div class="timeline__line" aria-hidden="true"></div>
+
+                <article class="timeline__entry" data-reveal>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <h3 class="timeline__title">BIT (Information Science)</h3>
+                        <p class="timeline__meta">University of Pretoria &middot; 2024 &ndash; 2026</p>
+                        <p>First Year: 76% &middot; Second Year: 71%</p>
+                        <p>Currently enrolled as a third-year student in the BIT programme with a focus on Information Science. My coursework has strengthened my foundation in IT concepts, programming, and systems analysis.</p>
                         <p>
-                            Achieved my National Senior Certificate with an excellent academic performance, earning distinctions in key subjects.
-                            This experience laid a strong foundation for my further studies in Information Technology.
-                        </p>
-                    </article>
-                    <article class="card">
-                        <h3 class="card__title">Bachelor of Information Technology (BIT) (Graduating 2026)</h3>
-                        <p><span class="label">Institution</span> University of Pretoria</p>
-                        <p><span class="label">Year</span> 2024 – Present</p>
-                        <p><span class="label">First Year</span> 76% Average</p>
-                        <p><span class="label">Second Year</span> 71% Average</p>
-                        <p>
-                            Currently enrolled as a third-year student in the BIT program with a focus on Information Science.
-                            My coursework has strengthened my foundation in IT concepts, programming, and systems analysis,
-                            and I am eager to continue developing my skills in these areas.
-                        </p>
-                        
-                        <p class="muted">
-                            Programme reference:
                             <a href="https://www.up.ac.za/" target="_blank" rel="noopener noreferrer">University of Pretoria</a>
-                            
-                            <span aria-hidden="true"> · </span>
+                            <span aria-hidden="true"> &middot; </span>
                             <a href="https://www.up.ac.za/school-of-information-technology" target="_blank" rel="noopener noreferrer">School of Information Technology</a>
-
-                            <span aria-hidden="true"> · </span>
+                            <span aria-hidden="true"> &middot; </span>
                             <a href="https://www.up.ac.za/yearbooks/2024/EBIT-faculty/UD-programmes/view/12133300" target="_blank" rel="noopener noreferrer">Programme Yearbook</a>
                         </p>
-                    </article>
-                </div>
-            </section>
+                    </div>
+                </article>
+
+                <article class="timeline__entry" data-reveal>
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__card">
+                        <h3 class="timeline__title">IEB National Senior Certificate</h3>
+                        <p class="timeline__meta">Independent Examinations Board (IEB) &middot; 2022</p>
+                        <p>81% average, 3 distinctions.</p>
+                        <p>Achieved my National Senior Certificate with an excellent academic performance, earning distinctions in key subjects. This experience laid a strong foundation for my further studies in Information Technology.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="flow section" aria-labelledby="projects-heading">
+            <h2 id="projects-heading" class="section-title">Projects <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
+            <div class="cards">
+                <article class="card" data-reveal>
+                    <h3 class="card__title">ADS&#8209;B Flight Tracker (South Africa)</h3>
+                    <p>Live aircraft on a map using public ADS&#8209;B data, built with Angular and Leaflet and hosted on GitHub Pages. Coverage centred on South Africa. The airplanes.live API is used to get aircraft information and the planespotters.net API i used to gather aircraft images.</p>
+                    <div class="card__tags">
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">TypeScript</span>
+                        <span class="skill-badge">Leaflet</span>
+                        <span class="skill-badge">GitHub Pages</span>
+                    </div>
+                    <div class="card__links">
+                        <a href="radar/index.html">Open the app</a>
+                        <span aria-hidden="true"> &middot; </span>
+                        <a href="https://github.com/stephanbredenhann/Radar---South-Africa-ADS-B-Radar" target="_blank" rel="noopener noreferrer">Source code</a>
+                    </div>
+                </article>
+                <article class="card" data-reveal>
+                    <h3 class="card__title">Community Road Paving Crowdfunding Platform</h3>
+                    <p>Full-stack web app enabling residents to collectively fund road paving by purchasing 1&nbsp;m&sup2; sections via an interactive map. Tracks construction progress in real time with role-based access for buyers and administrators. The project currently serves as a proof of concept for a real-world application.</p>
+                    <div class="card__tags">
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">TypeScript</span>
+                        <span class="skill-badge">.NET Core</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">Azure</span>
+                    </div>
+                    <div class="card__links">
+                        <a href="https://diamantlaan-sb.azurewebsites.net/" target="_blank" rel="noopener noreferrer">Open the app</a>
+                        <span aria-hidden="true"> &middot; </span>
+                        <a href="https://github.com/stephanbredenhann/Diamant-Laan-Projek" target="_blank" rel="noopener noreferrer">Source code</a>
+                    </div>
+                </article>
+            </div>
+        </section>
 
             <section id="skills" class="flow section" aria-labelledby="skills-heading">
-                <h2 id="skills-heading" class="section-title">Skills</h2>
-                <div class="cards">
-                    <article class="card">
-                        <h3 class="card__title">Technical Skills</h3>
-                        <ul class="list">
-                            <li><span class="skill-label">Programming Languages</span>: Python, JavaScript, HTML, CSS, C++, C#</li>
-                            <li><span class="skill-label">Web Development</span>: Strong knowledge of front-end technologies (HTML, CSS, JavaScript), responsive design, and web design principles</li>
-                            <li><span class="skill-label">Software Development</span>: Familiar with basic software engineering practices, object-oriented programming, and debugging techniques</li>
-                            <li><span class="skill-label">Operating Systems</span>: Comfortable working in Windows and Linux environments</li>
-                            <li><span class="skill-label">Version Control</span>: Familiar with Git and GitHub for version control and collaboration</li>
-                            <li><span class="skill-label">Database Management</span>: Familiar with Relational Database Management Systems</li>
-                            <li><span class="skill-label">Systems Design</span>: Familiar with systems design principles</li>
-                            <li><span class="skill-label">UML</span>: Familiar with Unified Modeling Language for system design and documentation</li>
+                <h2 id="skills-heading" class="section-title">Skills <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
+                <div class="skills-bento">
+
+                    <article class="card skills-bento__tag-card" data-reveal>
+                        <h3 class="skills-bento__label">Languages &amp; Frameworks</h3>
+                        <div class="skills-bento__tags">
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">TypeScript</span>
+                            <span class="skill-badge">C++</span>
+                            <span class="skill-badge">C#</span>
+                            <span class="skill-badge">Angular</span>
+                            <span class="skill-badge">Ionic</span>
+                            <span class="skill-badge">.NET Core</span>
+                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">Git</span>
+                            <span class="skill-badge">Jupyter Notebooks</span>
+                            <span class="skill-badge">NumPy</span>
+                            <span class="skill-badge">Matplotlib</span>
+                            <span class="skill-badge skill-badge--muted">HTML</span>
+                            <span class="skill-badge skill-badge--muted">CSS</span>
+                        </div>
+                    </article>
+
+                    <article class="card skills-bento__soft-card" data-reveal>
+                        <h3 class="skills-bento__label">Interpersonal</h3>
+                        <ul class="skills-bento__soft-list">
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                <span class="skills-bento__soft-name">Communication</span>
+                                <span class="skills-bento__soft-desc">Effective communication skills developed through both academic presentations and customer-facing roles.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <span class="skills-bento__soft-name">Teamwork</span>
+                                <span class="skills-bento__soft-desc">Ability to work collaboratively in team settings, honed through various work and academic group projects.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                <span class="skills-bento__soft-name">Problem Solving</span>
+                                <span class="skills-bento__soft-desc">Strong analytical thinking skills, enhanced by university coursework and hands-on experience with practical challenges.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                <span class="skills-bento__soft-name">Adaptability</span>
+                                <span class="skills-bento__soft-desc">Flexible and capable of learning new technologies and methodologies quickly in dynamic environments.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span class="skills-bento__soft-name">Time Management</span>
+                                <span class="skills-bento__soft-desc">Effective at managing academic workload alongside part-time work, balancing multiple responsibilities.</span>
+                            </li>
                         </ul>
                     </article>
-                    <article class="card">
-                        <h3 class="card__title">Soft Skills</h3>
-                        <ul class="list">
-                            <li><span class="skill-label">Communication</span>: Effective communication skills developed through both academic presentations and customer-facing roles</li>
-                            <li><span class="skill-label">Teamwork</span>: Ability to work collaboratively in team settings, honed through various work and academic group projects</li>
-                            <li><span class="skill-label">Problem Solving</span>: Strong analytical thinking skills, enhanced by university coursework and hands-on experience with practical challenges</li>
-                            <li><span class="skill-label">Adaptability</span>: Flexible and capable of learning new technologies and methodologies quickly in dynamic environments</li>
-                            <li><span class="skill-label">Time Management</span>: Effective at managing academic workload alongside part-time work, balancing multiple responsibilities</li>
-                        </ul>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--web" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <h3 class="skills-bento__domain-name">Web Development</h3>
+                        <p class="skills-bento__domain-desc">Responsive design, accessibility, and modern front-end development.</p>
                     </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--software" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <h3 class="skills-bento__domain-name">Software Development</h3>
+                        <p class="skills-bento__domain-desc">Object-oriented programming, debugging, and software engineering practices.</p>
+                    </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--databases" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        <h3 class="skills-bento__domain-name">Databases</h3>
+                        <p class="skills-bento__domain-desc">Relational Database Management Systems and SQL.</p>
+                    </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--os" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><rect x="8" y="19" width="8" height="2"/></svg>
+                        <h3 class="skills-bento__domain-name">Operating Systems</h3>
+                        <p class="skills-bento__domain-desc">Comfortable working in Windows and Linux environments.</p>
+                    </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--wide" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        <h3 class="skills-bento__domain-name">Systems Design &amp; UML</h3>
+                        <p class="skills-bento__domain-desc">Systems design principles and Unified Modeling Language for system design and documentation.</p>
+                    </article>
+
                 </div>
             </section>
 
-            <section id="projects" class="flow section" aria-labelledby="projects-heading">
-                <h2 id="projects-heading" class="section-title">Projects</h2>
-                <div class="cards">
-                    <article class="card">
-                        <h3 class="card__title">ADS‑B flight tracker (South Africa)</h3>
-                        <p>
-                            Live aircraft on a map using public ADS‑B data, built with Angular and Leaflet and hosted on GitHub Pages.
-                            Coverage centred on South Africa with presets for Pretoria, Johannesburg, and Cape Town.
-                        </p>
-                        <p>
-                            <a href="radar/index.html">Open the app</a>
-                            <span aria-hidden="true"> · </span>
-                            <a
-                                href="https://github.com/stephanbredenhann/Radar---South-Africa-ADS-B-Radar"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >Source code</a>
-                        </p>
-                    </article>
-                    <article class="card">
-                        <h3 class="card__title">Community Road Paving Crowdfunding Platform</h3>
-                        <p>
-                            Full-stack web app enabling residents to collectively fund road paving by purchasing
-                            1&nbsp;m&sup2; sections via an interactive map. Tracks construction progress in real time
-                            with role-based access for buyers and administrators. The project currently serves as a proof of concept for a real-world application.
-                        </p>
-                        <p>
-                            <a href="https://diamantlaan-sb.azurewebsites.net/" target="_blank" rel="noopener noreferrer">Open the app</a>
-                            <span aria-hidden="true"> · </span>
-                            <a
-                                href="https://github.com/stephanbredenhann/Diamant-Laan-Projek"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >Source code</a>
-                        </p>
-                    </article>
-                </div>
-            </section>
-
-            <section id="contact" class="flow section section--contact" aria-labelledby="contact-heading">
-                <h2 id="contact-heading" class="section-title">Contact</h2>
-                <address class="contact-card">
-                    <ul class="contact-list">
-                        <li class="contact-row">
-                            <span class="contact-icon" aria-hidden="true">
-                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
-                            </span>
-                            <div>
-                                <span class="label">Personal email</span>
-                                <a href="mailto:s.bredenhann456@gmail.com">s.bredenhann456@gmail.com</a>
-                            </div>
-                        </li>
-                        <li class="contact-row">
-                            <span class="contact-icon" aria-hidden="true">
-                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M4 6h16v2H4V6Zm0 5h10v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>
-                            </span>
-                            <div>
-                                <span class="label">Academic email</span>
-                                <a href="mailto:u23667436@tuks.co.za">u23667436@tuks.co.za</a>
-                            </div>
-                        </li>
-                        <li class="contact-row">
-                            <span class="contact-icon" aria-hidden="true">
-                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
-                            </span>
-                            <div>
-                                <span class="label">Address</span>
-                                <span>1233 Burnett Street, Hatfield, Pretoria, South Africa</span>
-                            </div>
-                        </li>
-                        <li class="contact-row">
-                            <span class="contact-icon" aria-hidden="true">
-                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8c1.7 3.3 4.3 5.9 7.6 7.6l2.5-2.5c.4-.4 1-.5 1.5-.3 1 .4 2.1.6 3.2.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C9.4 21 3 14.6 3 6.9a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.1.2 2.2.6 3.2.2.5.1 1.1-.3 1.5l-2.5 2.5Z"/></svg>
-                            </span>
-                            <div>
-                                <span class="label">Phone</span>
-                                <a href="tel:+27715660997">+27 71 566 0997</a>
-                            </div>
-                        </li>
-                    </ul>
-                </address>
-            </section>
+        <section id="contact" class="flow section section--contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading" class="section-title">Contact <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
+            <address class="contact-card">
+                <ul class="contact-list">
+                    <li class="contact-row">
+                        <span class="contact-icon" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+                        </span>
+                        <div>
+                            <span class="contact-label">Personal email</span>
+                            <a href="mailto:s.bredenhann456@gmail.com">s.bredenhann456@gmail.com</a>
+                        </div>
+                    </li>
+                    <li class="contact-row">
+                        <span class="contact-icon" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M4 6h16v2H4V6Zm0 5h10v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>
+                        </span>
+                        <div>
+                            <span class="contact-label">Academic email</span>
+                            <a href="mailto:u23667436@tuks.co.za">u23667436@tuks.co.za</a>
+                        </div>
+                    </li>
+                    <li class="contact-row">
+                        <span class="contact-icon" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+                        </span>
+                        <div>
+                            <span class="contact-label">Address</span>
+                            <span>1233 Burnett Street, Hatfield, Pretoria, South Africa</span>
+                        </div>
+                    </li>
+                    <li class="contact-row">
+                        <span class="contact-icon" aria-hidden="true">
+                            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8c1.7 3.3 4.3 5.9 7.6 7.6l2.5-2.5c.4-.4 1-.5 1.5-.3 1 .4 2.1.6 3.2.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C9.4 21 3 14.6 3 6.9a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.1.2 2.2.6 3.2.2.5.1 1.1-.3 1.5l-2.5 2.5Z"/></svg>
+                        </span>
+                        <div>
+                            <span class="contact-label">Phone</span>
+                            <a href="tel:+27715660997">+27 71 566 0997</a>
+                        </div>
+                    </li>
+                </ul>
+            </address>
+        </section>
         </div>
     </main>
 
     <footer class="site-footer">
         <div class="site-footer__inner">
             <p>&copy; <span data-year>2026</span> Stephan Bredenhann</p>
-            
+
             <p class="site-footer__meta">
                 <a href="https://github.com/stephanbredenhann/stephanbredenhann.github.io" target="_blank" rel="noopener noreferrer">Source</a>
-                <span aria-hidden="true"> · </span>
-                <span class="muted">Hosted on GitHub Pages</span>
+                <span aria-hidden="true"> &middot; </span>
+                <span>Hosted on GitHub Pages</span>
             </p>
         </div>
     </footer>
