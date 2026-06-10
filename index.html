@@ -110,7 +110,7 @@
                     <p class="hero__eyebrow">Portfolio &amp; CV</p>
                     <h1 id="hero-heading" class="hero__title" data-name-reveal>Stephan Bredenhann</h1>
                     <p class="hero__tagline">
-                        Third-year BIT &middot; Information Science &middot; University of Pretoria
+                        Third-year BIT &middot; Information Systems &middot; University of Pretoria
                     </p>
 
                     <ul class="hero__links" aria-label="Social links">
@@ -137,9 +137,9 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="hero__scroll" aria-hidden="true">
-                        <span class="hero__scroll-chevron"></span>
-                    </div>
+                    <a href="#experience" class="hero__scroll" aria-label="Scroll to Experience section">
+                        <span class="hero__scroll-chevron" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -154,9 +154,9 @@
                 <article class="timeline__entry" data-reveal>
                     <div class="timeline__dot"></div>
                     <div class="timeline__card">
-                        <h3 class="timeline__title">Tutor &mdash; Information Science Department</h3>
+                        <h3 class="timeline__title">Information Science Department Tutor</h3>
                         <p class="timeline__meta">University of Pretoria &middot; Feb 2025 &ndash; Nov 2025</p>
-                        <p>Tutored first-year students in INL 110 and INL 120, assisting with coursework, practical lab sessions, and exam preparation.</p>
+                        <p>Tutored first-year students in INL 110 and INL 120, assisting with coursework, and marking assignments.</p>
                     </div>
                 </article>
 
@@ -219,7 +219,13 @@
             <div class="cards">
                 <article class="card" data-reveal>
                     <h3 class="card__title">ADS&#8209;B Flight Tracker (South Africa)</h3>
-                    <p>Live aircraft on a map using public ADS&#8209;B data, built with Angular and Leaflet and hosted on GitHub Pages. Coverage centred on South Africa with presets for Pretoria, Johannesburg, and Cape Town.</p>
+                    <p>Live aircraft on a map using public ADS&#8209;B data, built with Angular and Leaflet and hosted on GitHub Pages. Coverage centred on South Africa. The airplanes.live API is used to get aircraft information and the planespotters.net API i used to gather aircraft images.</p>
+                    <div class="card__tags">
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">TypeScript</span>
+                        <span class="skill-badge">Leaflet</span>
+                        <span class="skill-badge">GitHub Pages</span>
+                    </div>
                     <div class="card__links">
                         <a href="radar/index.html">Open the app</a>
                         <span aria-hidden="true"> &middot; </span>
@@ -229,6 +235,13 @@
                 <article class="card" data-reveal>
                     <h3 class="card__title">Community Road Paving Crowdfunding Platform</h3>
                     <p>Full-stack web app enabling residents to collectively fund road paving by purchasing 1&nbsp;m&sup2; sections via an interactive map. Tracks construction progress in real time with role-based access for buyers and administrators. The project currently serves as a proof of concept for a real-world application.</p>
+                    <div class="card__tags">
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">TypeScript</span>
+                        <span class="skill-badge">.NET Core</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">Azure</span>
+                    </div>
                     <div class="card__links">
                         <a href="https://diamantlaan-sb.azurewebsites.net/" target="_blank" rel="noopener noreferrer">Open the app</a>
                         <span aria-hidden="true"> &middot; </span>
@@ -240,78 +253,90 @@
 
             <section id="skills" class="flow section" aria-labelledby="skills-heading">
                 <h2 id="skills-heading" class="section-title">Skills <svg class="section-title__line" viewBox="0 0 160 6" aria-hidden="true"><path d="M 0 3 Q 40 0, 80 3 T 160 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></h2>
-                <div class="skills-layout">
-                    <article class="skills-panel skills-panel--technical card" data-reveal>
-                        <h3 class="skills-panel__title">Technical Skills</h3>
-                        <dl class="skill-details">
-                            <div class="skill-detail skill-detail--languages">
-                                <dt class="skill-detail__term">Programming Languages</dt>
-                                <dd class="skill-detail__desc">
-                                    <div class="skill-detail__badges" aria-label="Programming languages">
-                                        <span class="skill-badge">Python</span>
-                                        <span class="skill-badge">JavaScript</span>
-                                        <span class="skill-badge">HTML</span>
-                                        <span class="skill-badge">CSS</span>
-                                        <span class="skill-badge">C++</span>
-                                        <span class="skill-badge">C#</span>
-                                    </div>
-                                </dd>
-                            </div>
-                            <div class="skill-detail">
-                                <dt class="skill-detail__term">Web Development</dt>
-                                <dd class="skill-detail__desc">Strong knowledge of front-end technologies (HTML, CSS, JavaScript), responsive design, and web design principles.</dd>
-                            </div>
-                            <div class="skill-detail">
-                                <dt class="skill-detail__term">Software Development</dt>
-                                <dd class="skill-detail__desc">Familiar with basic software engineering practices, object-oriented programming, and debugging techniques.</dd>
-                            </div>
-                            <div class="skill-detail">
-                                <dt class="skill-detail__term">Operating Systems</dt>
-                                <dd class="skill-detail__desc">Comfortable working in Windows and Linux environments.</dd>
-                            </div>
-                            <div class="skill-detail">
-                                <dt class="skill-detail__term">Version Control</dt>
-                                <dd class="skill-detail__desc">Familiar with Git and GitHub for version control and collaboration.</dd>
-                            </div>
-                            <div class="skill-detail">
-                                <dt class="skill-detail__term">Database Management</dt>
-                                <dd class="skill-detail__desc">Familiar with Relational Database Management Systems.</dd>
-                            </div>
-                            <div class="skill-detail">
-                                <dt class="skill-detail__term">Systems Design</dt>
-                                <dd class="skill-detail__desc">Familiar with systems design principles.</dd>
-                            </div>
-                            <div class="skill-detail">
-                                <dt class="skill-detail__term">UML</dt>
-                                <dd class="skill-detail__desc">Familiar with Unified Modeling Language for system design and documentation.</dd>
-                            </div>
-                        </dl>
+                <div class="skills-bento">
+
+                    <article class="card skills-bento__tag-card" data-reveal>
+                        <h3 class="skills-bento__label">Languages &amp; Frameworks</h3>
+                        <div class="skills-bento__tags">
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">TypeScript</span>
+                            <span class="skill-badge">C++</span>
+                            <span class="skill-badge">C#</span>
+                            <span class="skill-badge">Angular</span>
+                            <span class="skill-badge">Ionic</span>
+                            <span class="skill-badge">.NET Core</span>
+                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">Git</span>
+                            <span class="skill-badge">Jupyter Notebooks</span>
+                            <span class="skill-badge">NumPy</span>
+                            <span class="skill-badge">Matplotlib</span>
+                            <span class="skill-badge skill-badge--muted">HTML</span>
+                            <span class="skill-badge skill-badge--muted">CSS</span>
+                        </div>
                     </article>
-                    <article class="skills-panel skills-panel--soft card" data-reveal>
-                        <h3 class="skills-panel__title">Soft Skills</h3>
-                        <dl class="skill-details skill-details--soft">
-                            <div class="skill-detail skill-detail--soft">
-                                <dt class="skill-detail__term">Communication</dt>
-                                <dd class="skill-detail__desc">Effective communication skills developed through both academic presentations and customer-facing roles.</dd>
-                            </div>
-                            <div class="skill-detail skill-detail--soft">
-                                <dt class="skill-detail__term">Teamwork</dt>
-                                <dd class="skill-detail__desc">Ability to work collaboratively in team settings, honed through various work and academic group projects.</dd>
-                            </div>
-                            <div class="skill-detail skill-detail--soft">
-                                <dt class="skill-detail__term">Problem Solving</dt>
-                                <dd class="skill-detail__desc">Strong analytical thinking skills, enhanced by university coursework and hands-on experience with practical challenges.</dd>
-                            </div>
-                            <div class="skill-detail skill-detail--soft">
-                                <dt class="skill-detail__term">Adaptability</dt>
-                                <dd class="skill-detail__desc">Flexible and capable of learning new technologies and methodologies quickly in dynamic environments.</dd>
-                            </div>
-                            <div class="skill-detail skill-detail--soft">
-                                <dt class="skill-detail__term">Time Management</dt>
-                                <dd class="skill-detail__desc">Effective at managing academic workload alongside part-time work, balancing multiple responsibilities.</dd>
-                            </div>
-                        </dl>
+
+                    <article class="card skills-bento__soft-card" data-reveal>
+                        <h3 class="skills-bento__label">Interpersonal</h3>
+                        <ul class="skills-bento__soft-list">
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                <span class="skills-bento__soft-name">Communication</span>
+                                <span class="skills-bento__soft-desc">Effective communication skills developed through both academic presentations and customer-facing roles.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <span class="skills-bento__soft-name">Teamwork</span>
+                                <span class="skills-bento__soft-desc">Ability to work collaboratively in team settings, honed through various work and academic group projects.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                <span class="skills-bento__soft-name">Problem Solving</span>
+                                <span class="skills-bento__soft-desc">Strong analytical thinking skills, enhanced by university coursework and hands-on experience with practical challenges.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                <span class="skills-bento__soft-name">Adaptability</span>
+                                <span class="skills-bento__soft-desc">Flexible and capable of learning new technologies and methodologies quickly in dynamic environments.</span>
+                            </li>
+                            <li class="skills-bento__soft-item">
+                                <svg class="skills-bento__icon skills-bento__icon--soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span class="skills-bento__soft-name">Time Management</span>
+                                <span class="skills-bento__soft-desc">Effective at managing academic workload alongside part-time work, balancing multiple responsibilities.</span>
+                            </li>
+                        </ul>
                     </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--web" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <h3 class="skills-bento__domain-name">Web Development</h3>
+                        <p class="skills-bento__domain-desc">Responsive design, accessibility, and modern front-end development.</p>
+                    </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--software" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <h3 class="skills-bento__domain-name">Software Development</h3>
+                        <p class="skills-bento__domain-desc">Object-oriented programming, debugging, and software engineering practices.</p>
+                    </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--databases" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        <h3 class="skills-bento__domain-name">Databases</h3>
+                        <p class="skills-bento__domain-desc">Relational Database Management Systems and SQL.</p>
+                    </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--os" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><rect x="8" y="19" width="8" height="2"/></svg>
+                        <h3 class="skills-bento__domain-name">Operating Systems</h3>
+                        <p class="skills-bento__domain-desc">Comfortable working in Windows and Linux environments.</p>
+                    </article>
+
+                    <article class="card skills-bento__domain-card skills-bento__domain-card--wide" data-reveal>
+                        <svg class="skills-bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        <h3 class="skills-bento__domain-name">Systems Design &amp; UML</h3>
+                        <p class="skills-bento__domain-desc">Systems design principles and Unified Modeling Language for system design and documentation.</p>
+                    </article>
+
                 </div>
             </section>
 

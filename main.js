@@ -1,8 +1,6 @@
 const THEME_KEY = 'sb-theme';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-// ==================== 1. THEME TOGGLE ====================
-
 const themeBtn = document.querySelector('[data-theme-toggle]');
 const root = document.documentElement;
 
@@ -50,8 +48,6 @@ themeBtn?.addEventListener('click', () => {
 
 initTheme();
 
-// ==================== 2. NAV DRAWER ====================
-
 const siteNav = document.getElementById('site-nav');
 const navToggle = document.querySelector('[data-nav-toggle]');
 const navMenu = document.querySelector('[data-nav-menu]');
@@ -89,13 +85,9 @@ mqNav.addEventListener('change', (e) => {
     if (e.matches) setNavOpen(false);
 });
 
-// ==================== 3. FOOTER YEAR ====================
-
 for (const el of document.querySelectorAll('[data-year]')) {
     el.textContent = String(new Date().getFullYear());
 }
-
-// ==================== 4. PARTICLE CANVAS ====================
 
 const canvas = document.querySelector('[data-particle-canvas]');
 let animFrameId = null;
@@ -275,8 +267,6 @@ if (canvas) {
     });
 }
 
-// ==================== 5. NAME CHARACTER REVEAL ====================
-
 const nameEl = document.querySelector('[data-name-reveal]');
 if (nameEl && !reducedMotion.matches) {
     const text = nameEl.textContent;
@@ -293,14 +283,60 @@ if (nameEl && !reducedMotion.matches) {
     });
 }
 
-// ==================== 6. SCROLL REVEALS — data-reveal ====================
-// ==================== 7. SECTION TITLE UNDERLINE DRAWING ====================
-// ==================== 8. TIMELINE ANIMATION ====================
+function remPx(rem) {
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+function updateTimelineProgress(timeline) {
+    const line = timeline.querySelector('.timeline__line');
+    if (!line) return;
+
+    const entries = [...timeline.querySelectorAll('.timeline__entry')];
+    const visibleEntries = entries.filter((el) => el.classList.contains('is-visible'));
+    const lastVisible = visibleEntries.at(-1);
+    if (!lastVisible) {
+        line.style.height = '0';
+        return;
+    }
+
+    const lineTop = line.offsetTop;
+    const bottomInset = remPx(0.3);
+
+    if (visibleEntries.length === entries.length) {
+        line.style.height = `${Math.max(0, timeline.offsetHeight - lineTop - bottomInset)}px`;
+        return;
+    }
+
+    const dot = lastVisible.querySelector('.timeline__dot');
+    if (!dot) return;
+
+    const dotCenter = lastVisible.offsetTop + dot.offsetTop + dot.offsetHeight / 2;
+    line.style.height = `${Math.max(0, dotCenter - lineTop)}px`;
+}
+
+function refreshVisibleTimelines() {
+    for (const timeline of document.querySelectorAll('.timeline')) {
+        if (timeline.querySelector('.timeline__entry.is-visible')) {
+            updateTimelineProgress(timeline);
+        }
+    }
+}
 
 const revealObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
         if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
+            const timeline = entry.target.closest('.timeline');
+            if (timeline) {
+                updateTimelineProgress(timeline);
+                entry.target.addEventListener(
+                    'transitionend',
+                    (e) => {
+                        if (e.propertyName === 'transform') updateTimelineProgress(timeline);
+                    },
+                    { once: true }
+                );
+            }
             revealObserver.unobserve(entry.target);
         }
     }
@@ -309,6 +345,8 @@ const revealObserver = new IntersectionObserver((entries) => {
 for (const el of document.querySelectorAll('[data-reveal]')) {
     revealObserver.observe(el);
 }
+
+window.addEventListener('resize', refreshVisibleTimelines);
 
 const titleObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
@@ -322,21 +360,6 @@ const titleObserver = new IntersectionObserver((entries) => {
 for (const el of document.querySelectorAll('.section-title')) {
     titleObserver.observe(el);
 }
-
-const timelineObserver = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            timelineObserver.unobserve(entry.target);
-        }
-    }
-}, { threshold: 0.2 });
-
-for (const el of document.querySelectorAll('.timeline')) {
-    timelineObserver.observe(el);
-}
-
-// ==================== 9. ACTIVE NAV LINK HIGHLIGHTING ====================
 
 const navLinks = document.querySelectorAll('.site-nav__list a');
 const sectionObserver = new IntersectionObserver((entries) => {
@@ -357,3 +380,93 @@ const sectionObserver = new IntersectionObserver((entries) => {
 for (const el of document.querySelectorAll('section[id]')) {
     sectionObserver.observe(el);
 }
+
+const heroSection = document.getElementById('landing');
+const firstContentSection = document.getElementById('experience');
+let heroScrollLock = false;
+
+function isInHeroScrollZone() {
+    if (!heroSection || !firstContentSection) return false;
+    return window.scrollY < firstContentSection.offsetTop - 80;
+}
+
+function isInReturnToHeroZone() {
+    if (!heroSection || !firstContentSection) return false;
+    const scrollY = window.scrollY;
+    const experienceTop = firstContentSection.offsetTop;
+    return (
+        scrollY > heroSection.offsetTop + 40 &&
+        scrollY <= experienceTop + window.innerHeight * 0.3
+    );
+}
+
+function scrollToSection(section) {
+    if (!section || heroScrollLock) return;
+    heroScrollLock = true;
+    section.scrollIntoView({
+        behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        block: 'start'
+    });
+    window.setTimeout(
+        () => {
+            heroScrollLock = false;
+        },
+        reducedMotion.matches ? 0 : 700
+    );
+}
+
+function scrollToFirstSection() {
+    scrollToSection(firstContentSection);
+}
+
+function scrollToHero() {
+    scrollToSection(heroSection);
+}
+
+window.addEventListener(
+    'wheel',
+    (e) => {
+        if (reducedMotion.matches || heroScrollLock) return;
+
+        if (e.deltaY > 0 && isInHeroScrollZone()) {
+            e.preventDefault();
+            scrollToFirstSection();
+            return;
+        }
+
+        if (e.deltaY < 0 && isInReturnToHeroZone()) {
+            e.preventDefault();
+            scrollToHero();
+        }
+    },
+    { passive: false }
+);
+
+let touchStartY = 0;
+
+window.addEventListener(
+    'touchstart',
+    (e) => {
+        touchStartY = e.touches[0]?.clientY ?? 0;
+    },
+    { passive: true }
+);
+
+window.addEventListener(
+    'touchend',
+    (e) => {
+        if (reducedMotion.matches || heroScrollLock) return;
+        const touchEndY = e.changedTouches[0]?.clientY ?? 0;
+        const delta = touchStartY - touchEndY;
+
+        if (delta > 50 && isInHeroScrollZone()) {
+            scrollToFirstSection();
+            return;
+        }
+
+        if (delta < -50 && isInReturnToHeroZone()) {
+            scrollToHero();
+        }
+    },
+    { passive: true }
+);
