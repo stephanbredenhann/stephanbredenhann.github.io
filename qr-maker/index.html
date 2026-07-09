@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free QR Code Maker</title>
+    <meta name="description" content="Generate QR codes for websites, contact cards, or plain text. Runs entirely in your browser.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app__header">
+            <h1 class="app__title">QR Code Maker</h1>
+            <p class="app__subtitle">Generate QR codes instantly.</p>
+        </header>
+
+        <main class="app__main">
+            <div class="panel">
+                <div class="panel__form">
+                    <div class="tabs" role="tablist" aria-label="QR code type">
+                        <button type="button" class="tabs__btn tabs__btn--active" role="tab" id="tab-website" aria-selected="true" aria-controls="panel-website" data-tab="website">Website</button>
+                        <button type="button" class="tabs__btn" role="tab" id="tab-contact" aria-selected="false" aria-controls="panel-contact" data-tab="contact">Contact</button>
+                        <button type="button" class="tabs__btn" role="tab" id="tab-text" aria-selected="false" aria-controls="panel-text" data-tab="text">Text</button>
+                    </div>
+
+                    <div class="tab-panels">
+                        <div class="tab-panel tab-panel--active" role="tabpanel" id="panel-website" aria-labelledby="tab-website">
+                            <label class="field" for="website-url">
+                                <span class="field__label">Website URL</span>
+                                <input class="field__input" type="url" id="website-url" placeholder="example.com" autocomplete="url">
+                            </label>
+                        </div>
+
+                        <div class="tab-panel" role="tabpanel" id="panel-contact" aria-labelledby="tab-contact" hidden>
+                            <label class="field" for="contact-name">
+                                <span class="field__label">Name</span>
+                                <input class="field__input" type="text" id="contact-name" placeholder="Jane Doe" autocomplete="name">
+                            </label>
+                            <label class="field" for="contact-phone">
+                                <span class="field__label">Phone</span>
+                                <input class="field__input" type="tel" id="contact-phone" placeholder="082 123 4567" autocomplete="tel">
+                            </label>
+                            <label class="field" for="contact-email">
+                                <span class="field__label">Email</span>
+                                <input class="field__input" type="email" id="contact-email" placeholder="jane@example.com" autocomplete="email">
+                            </label>
+                            <p class="field__hint">At least phone or email is required.</p>
+                        </div>
+
+                        <div class="tab-panel" role="tabpanel" id="panel-text" aria-labelledby="tab-text" hidden>
+                            <label class="field" for="text-content">
+                                <span class="field__label">Text</span>
+                                <textarea class="field__input field__textarea" id="text-content" rows="5" placeholder="Enter any text to encode…"></textarea>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel__preview">
+                    <div class="preview">
+                        <div class="preview__frame" id="preview-frame">
+                            <canvas id="qr-canvas" width="256" height="256" hidden></canvas>
+                            <p class="preview__placeholder" id="preview-placeholder">Enter content to generate a QR code</p>
+                        </div>
+                        <button type="button" class="btn btn--primary" id="download-btn" disabled>Download PNG</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app__footer">
+            <a href="https://stephanbredenhann.dev/">stephanbredenhann.dev</a>
+        </footer>
+    </div>
+
+    <script src="qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

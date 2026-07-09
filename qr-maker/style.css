@@ -1,0 +1,244 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #0e0e18;
+    color: #e8eaf0;
+    line-height: 1.5;
+}
+
+:focus-visible {
+    outline: 2px solid #4da3ff;
+    outline-offset: 2px;
+}
+
+.app {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem 2rem;
+}
+
+.app__header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.app__title {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.app__subtitle {
+    margin: 0;
+    color: #9aa0b4;
+    font-size: 0.95rem;
+}
+
+.app__main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app__footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+}
+
+.app__footer a {
+    color: #6b9fd4;
+    text-decoration: none;
+}
+
+.app__footer a:hover {
+    text-decoration: underline;
+}
+
+.panel {
+    width: 100%;
+    max-width: 52rem;
+    background: #1a1a28;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 640px) {
+    .panel {
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem;
+    }
+}
+
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1.25rem;
+    background: #12121c;
+    border-radius: 8px;
+    padding: 0.25rem;
+}
+
+.tabs__btn {
+    flex: 1;
+    padding: 0.55rem 0.75rem;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #9aa0b4;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.tabs__btn:hover {
+    color: #e8eaf0;
+}
+
+.tabs__btn--active {
+    background: #2a3a52;
+    color: #e8eaf0;
+}
+
+.field {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.field__label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #b8bcc8;
+}
+
+.field__input {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: #12121c;
+    color: #e8eaf0;
+    font: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.15s;
+}
+
+.field__input::placeholder {
+    color: #6b7280;
+}
+
+.field__input:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.field__input:focus {
+    outline: none;
+    border-color: #4da3ff;
+}
+
+.field__textarea {
+    resize: vertical;
+    min-height: 7rem;
+}
+
+.field__hint {
+    margin: -0.5rem 0 0;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.panel__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.preview__frame {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    background: #12121c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.preview__frame > * {
+    grid-area: 1 / 1;
+}
+
+.preview__placeholder {
+    margin: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+    padding: 0 1rem;
+    max-width: 100%;
+    align-self: center;
+    justify-self: center;
+}
+
+#qr-canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+}
+
+.btn {
+    padding: 0.65rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+}
+
+.btn--primary {
+    background: #3b82c4;
+    color: #fff;
+}
+
+.btn--primary:hover:not(:disabled) {
+    background: #4da3ff;
+}
+
+.btn--primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
