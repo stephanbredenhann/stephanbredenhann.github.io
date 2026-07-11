@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Background Remover</title>
+    <meta name="description" content="Remove image backgrounds entirely in your browser. No uploads, no server.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app__header">
+            <h1 class="app__title">Background Remover</h1>
+            <p class="app__subtitle">Remove backgrounds instantly in your browser.</p>
+
+            <div class="model-status" id="model-status" aria-live="polite">
+                <div class="spinner spinner--sm" id="model-spinner" aria-hidden="true"></div>
+                <p class="model-status__text" id="model-status-text">Downloading model…</p>
+                <div class="progress" id="model-progress">
+                    <div class="progress__bar" id="model-progress-bar"></div>
+                </div>
+            </div>
+
+            <p class="app__hint">First use downloads a model to your device (~40&nbsp;MB). Nothing is uploaded to a server.</p>
+        </header>
+
+        <main class="app__main">
+            <div class="panel">
+                <div class="panel__drop">
+                    <div
+                        class="box dropzone dropzone--locked"
+                        id="dropzone"
+                        role="button"
+                        tabindex="-1"
+                        aria-disabled="true"
+                        aria-label="Drop an image here or press Enter to upload"
+                    >
+                        <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp,image/gif" hidden disabled>
+                        <p class="dropzone__hint">Drop an image here</p>
+                        <button type="button" class="btn btn--primary" id="upload-btn" disabled>Upload image</button>
+                    </div>
+                </div>
+
+                <div class="panel__status" id="status" aria-live="polite">
+                    <div class="status" id="status-inner">
+                        <div class="spinner spinner--sm" id="status-spinner" hidden aria-hidden="true"></div>
+                        <p class="status__text" id="status-text"></p>
+                    </div>
+                </div>
+
+                <div class="panel__result">
+                    <div class="result">
+                        <div class="box result__frame" id="result-frame">
+                            <img class="result__image" id="result-image" alt="Background removed result" hidden>
+                            <p class="result__placeholder" id="result-placeholder">Result appears here</p>
+                        </div>
+                        <button type="button" class="btn btn--primary" id="download-btn" disabled>Download PNG</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app__footer">
+            <a href="https://stephanbredenhann.dev/">stephanbredenhann.dev</a>
+            <span class="app__footer-sep" aria-hidden="true"> · </span>
+            <span class="app__footer-credit">Using <a href="https://github.com/imgly/background-removal-js" target="_blank" rel="noopener noreferrer">IMG.LY background-removal</a></span>
+        </footer>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
