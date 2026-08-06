@@ -19,7 +19,7 @@ function applyTheme(theme) {
     root.style.colorScheme = isDark ? 'dark' : 'light';
 
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = isDark ? '#1C1410' : '#FAFAF5';
+    if (meta) meta.content = isDark ? '#0E1621' : '#F7F9FC';
 
     if (themeBtn) {
         themeBtn.setAttribute('aria-pressed', String(isDark));
@@ -95,7 +95,19 @@ let running = false;
 
 if (canvas) {
     const ctx = canvas.getContext('2d');
-    const colors = ['#B8A165', '#D6B85A', '#C8A87C', '#E8D5A3', '#92400E'];
+    // Light mode needs darker particles to register on near-white paper; the
+    // dark-mode golds would simply disappear.
+    const PALETTES = {
+        dark: ['#C7A55E', '#D9B871', '#8FB4DC', '#4E7FB5', '#8A6F35'],
+        light: ['#8A6620', '#A98A45', '#4E7FB5', '#2F5F94', '#6C7F96']
+    };
+
+    function palette() {
+        return document.documentElement.getAttribute('data-theme') === 'light'
+            ? PALETTES.light
+            : PALETTES.dark;
+    }
+
     let particles = [];
     let w = 0;
     let h = 0;
@@ -112,10 +124,15 @@ if (canvas) {
 
     function createParticles() {
         const count = window.innerWidth < 768 ? 24 : 40;
+        const colors = palette();
+        // Darker light-mode particles read stronger, so keep them fainter.
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const opacityFloor = isLight ? 0.05 : 0.1;
+        const opacityRange = isLight ? 0.18 : 0.35;
         particles = [];
         for (let i = 0; i < count; i++) {
             const baseR = Math.random() * 2.5 + 1.5;
-            const baseOpacity = Math.random() * 0.35 + 0.1;
+            const baseOpacity = Math.random() * opacityRange + opacityFloor;
             particles.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
@@ -132,7 +149,7 @@ if (canvas) {
 
     function updateCanvasBg() {
         const styles = getComputedStyle(document.documentElement);
-        const bg = styles.getPropertyValue('--bg').trim() || '#1C1410';
+        const bg = styles.getPropertyValue('--bg').trim() || '#0E1621';
         canvas.style.background = bg;
     }
 
@@ -191,7 +208,7 @@ if (canvas) {
         touchFadeTimer = setTimeout(() => {
             setPointer(w / 2, h / 2);
         }, 1000);
-    });
+    }, { passive: true });
 
     function update() {
         mouseX += (targetMouseX - mouseX) * 0.08;
@@ -261,7 +278,10 @@ if (canvas) {
 
     window.addEventListener('resize', resize);
 
-    new MutationObserver(() => updateCanvasBg()).observe(document.documentElement, {
+    new MutationObserver(() => {
+        updateCanvasBg();
+        createParticles();
+    }).observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['data-theme']
     });
@@ -381,92 +401,62 @@ for (const el of document.querySelectorAll('section[id]')) {
     sectionObserver.observe(el);
 }
 
+/* Hero acts as a title card: the first downward gesture made while resting at
+   the top skips straight to the content.
+
+   Unlike the previous version this never calls preventDefault() and never
+   intercepts upward gestures. Both listeners are passive, so the browser's own
+   scrolling, momentum and trackpad behaviour are untouched — we only add a
+   smooth scroll on top of a gesture the browser is already free to handle. */
 const heroSection = document.getElementById('landing');
 const firstContentSection = document.getElementById('experience');
-let heroScrollLock = false;
 
-function isInHeroScrollZone() {
-    if (!heroSection || !firstContentSection) return false;
-    return window.scrollY < firstContentSection.offsetTop - 80;
-}
+if (heroSection && firstContentSection) {
+    const TOP_THRESHOLD = 24;
+    const SWIPE_THRESHOLD = 40;
+    let skipLock = false;
 
-function isInReturnToHeroZone() {
-    if (!heroSection || !firstContentSection) return false;
-    const scrollY = window.scrollY;
-    const experienceTop = firstContentSection.offsetTop;
-    return (
-        scrollY > heroSection.offsetTop + 40 &&
-        scrollY <= experienceTop + window.innerHeight * 0.3
-    );
-}
+    function canSkip() {
+        return !skipLock && !reducedMotion.matches && !document.body.classList.contains('nav-open');
+    }
 
-function scrollToSection(section) {
-    if (!section || heroScrollLock) return;
-    heroScrollLock = true;
-    section.scrollIntoView({
-        behavior: reducedMotion.matches ? 'auto' : 'smooth',
-        block: 'start'
-    });
-    window.setTimeout(
-        () => {
-            heroScrollLock = false;
+    function skipHero() {
+        if (!canSkip()) return;
+        skipLock = true;
+        firstContentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.setTimeout(() => {
+            skipLock = false;
+        }, 900);
+    }
+
+    window.addEventListener(
+        'wheel',
+        (e) => {
+            if (e.deltaY > 0 && window.scrollY < TOP_THRESHOLD) skipHero();
         },
-        reducedMotion.matches ? 0 : 700
+        { passive: true }
+    );
+
+    let touchStartY = 0;
+    let touchStartedAtTop = false;
+
+    window.addEventListener(
+        'touchstart',
+        (e) => {
+            touchStartY = e.touches[0]?.clientY ?? 0;
+            // Captured on touchstart because by touchend the page has already moved.
+            touchStartedAtTop = window.scrollY < TOP_THRESHOLD;
+        },
+        { passive: true }
+    );
+
+    window.addEventListener(
+        'touchend',
+        (e) => {
+            if (!touchStartedAtTop) return;
+            const touchEndY = e.changedTouches[0]?.clientY ?? 0;
+            if (touchStartY - touchEndY > SWIPE_THRESHOLD) skipHero();
+        },
+        { passive: true }
     );
 }
-
-function scrollToFirstSection() {
-    scrollToSection(firstContentSection);
-}
-
-function scrollToHero() {
-    scrollToSection(heroSection);
-}
-
-window.addEventListener(
-    'wheel',
-    (e) => {
-        if (reducedMotion.matches || heroScrollLock) return;
-
-        if (e.deltaY > 0 && isInHeroScrollZone()) {
-            e.preventDefault();
-            scrollToFirstSection();
-            return;
-        }
-
-        if (e.deltaY < 0 && isInReturnToHeroZone()) {
-            e.preventDefault();
-            scrollToHero();
-        }
-    },
-    { passive: false }
-);
-
-let touchStartY = 0;
-
-window.addEventListener(
-    'touchstart',
-    (e) => {
-        touchStartY = e.touches[0]?.clientY ?? 0;
-    },
-    { passive: true }
-);
-
-window.addEventListener(
-    'touchend',
-    (e) => {
-        if (reducedMotion.matches || heroScrollLock) return;
-        const touchEndY = e.changedTouches[0]?.clientY ?? 0;
-        const delta = touchStartY - touchEndY;
-
-        if (delta > 50 && isInHeroScrollZone()) {
-            scrollToFirstSection();
-            return;
-        }
-
-        if (delta < -50 && isInReturnToHeroZone()) {
-            scrollToHero();
-        }
-    },
-    { passive: true }
-);
