@@ -289,18 +289,31 @@ if (canvas) {
 
 const nameEl = document.querySelector('[data-name-reveal]');
 if (nameEl && !reducedMotion.matches) {
-    const text = nameEl.textContent;
-    nameEl.innerHTML = '';
-    const chars = [...text];
-    chars.forEach((char, i) => {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        if (char !== ' ') {
-            span.style.animationDelay = (i * 55) + 'ms';
+    const parts = [...nameEl.querySelectorAll('.hero__given, .hero__family')];
+    let delayIndex = 0;
+
+    const wrapChars = (container, text) => {
+        container.textContent = '';
+        for (const char of text) {
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.textContent = char;
+            span.style.animationDelay = `${delayIndex * 55}ms`;
+            container.appendChild(span);
+            delayIndex += 1;
         }
-        nameEl.appendChild(span);
-    });
+    };
+
+    if (parts.length) {
+        for (const part of parts) {
+            wrapChars(part, part.textContent.trim());
+            delayIndex += 1;
+        }
+    } else {
+        const text = nameEl.textContent.trim();
+        nameEl.textContent = '';
+        wrapChars(nameEl, text);
+    }
 }
 
 function remPx(rem) {
