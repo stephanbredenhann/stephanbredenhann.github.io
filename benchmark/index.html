@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LLM Games Lab</title>
+    <meta name="description" content="One prompt, one HTML file, one sitting with the result. Snake, Breakout and an open 3D brief, written by language models and played through by hand.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app__header">
+            <h1 class="app__title">LLM Games Lab</h1>
+        </header>
+
+        <main class="app__main">
+
+            <section class="panel" aria-labelledby="method-heading">
+                <h2 id="method-heading">How this works</h2>
+                <ol class="method">
+                    <li>The model gets one of the three prompts below, pasted in word for word. No follow-up nudge when it goes wrong.</li>
+                    <li>Whatever comes back is what gets tested. A broken file stays broken.</li>
+                    <li>I play it in Chrome, long enough to have an opinion worth writing down.</li>
+                    <li>Then I write down that opinion.</li>
+                </ol>
+                <p class="panel__note">
+                    There is no score out of ten. I tried scoring the first few and every number I picked
+                    said less than a sentence would have, so the write-ups end in a paragraph instead.
+                    The model, the reasoning effort and the harness it ran through are listed on each
+                    result page.
+                </p>
+            </section>
+
+            <section class="panel" aria-labelledby="games-heading">
+                <h2 id="games-heading">The prompts</h2>
+                <p class="panel__intro">These do not change between models. Where a requirement turns out to be vague, everyone gets the same vague requirement.</p>
+
+                <details class="game">
+                    <summary>Snake</summary>
+                    <blockquote class="prompt" data-prompt="snake"></blockquote>
+                </details>
+
+                <details class="game">
+                    <summary>Breakout</summary>
+                    <blockquote class="prompt" data-prompt="breakout"></blockquote>
+                </details>
+
+                <details class="game">
+                    <summary>Freeform 3D</summary>
+                    <blockquote class="prompt" data-prompt="freeform"></blockquote>
+                </details>
+            </section>
+
+            <section class="panel" aria-labelledby="runs-heading">
+                <h2 id="runs-heading">Runs</h2>
+                <div class="runs" id="runs"></div>
+                <p class="runs__empty" id="runs-empty" hidden>Nothing published yet. The first batch is still being played.</p>
+            </section>
+
+        </main>
+
+        <footer class="app__footer">
+            <a href="/">stephanbredenhann.dev</a>
+        </footer>
+    </div>
+
+    <dialog class="modal" id="games-modal" aria-labelledby="modal-title">
+        <h2 class="modal__title" id="modal-title"></h2>
+        <p class="modal__sub" id="modal-sub"></p>
+        <ul class="modal__list" id="modal-list"></ul>
+        <form method="dialog" class="modal__foot">
+            <button class="btn">Close</button>
+        </form>
+    </dialog>
+
+    <script src="prompts.js"></script>
+    <script src="entries.js"></script>
+    <script src="lab.js"></script>
+</body>
+</html>

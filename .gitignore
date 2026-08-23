@@ -3,3 +3,4 @@
 .cursor/
 node_modules/
 docs/
+scripts/timetable-export.tsv

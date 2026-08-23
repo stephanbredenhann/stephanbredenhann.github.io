@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- ==================================================================
+Publishing a result:
+
+1. Copy this file to  benchmark/results/<model>-<game>.html
+   Lowercase with hyphens, e.g. opus-5-snake.html
+2. Save the model's generated file beside it as <model>-<game>-source.html
+   and point both the iframe and the Source link at it.
+3. Replace every TODO. Delete this comment block when you are done.
+4. Open benchmark/entries.js and either add the model or fill in the
+   game key on the object that is already there.
+
+Leave the prompt text alone. It is pulled from prompts.js at load time so
+that it cannot drift out of sync with what the model was actually given.
+=================================================================== -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TODO Game by TODO Model | LLM Games Lab</title>
+    <meta name="description" content="Playing through TODO Model's attempt at TODO Game in the LLM Games Lab one-file challenge.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app__header">
+            <p class="crumb"><a href="../">LLM Games Lab</a> / result</p>
+            <h1 class="app__title"><span class="result-game">TODO Snake</span> by <span class="result-model">TODO Model</span></h1>
+            <p class="app__subtitle">One prompt, one file, one sitting.</p>
+        </header>
+
+        <main class="app__main">
+
+            <section class="panel" aria-label="Run details">
+                <dl class="facts">
+                    <div class="fact"><dt>Game</dt><dd>TODO Snake</dd></div>
+                    <div class="fact"><dt>Model</dt><dd>TODO exact identifier and version</dd></div>
+                    <div class="fact"><dt>Effort</dt><dd>TODO reasoning level and how many attempts were allowed</dd></div>
+                    <div class="fact"><dt>Time</dt><dd>TODO how long generation took</dd></div>
+                    <div class="fact"><dt>Harness</dt><dd>TODO what the model was prompted through, e.g. the web chat or the API</dd></div>
+                    <div class="fact"><dt>Tested</dt><dd>TODO 22 August 2026</dd></div>
+                    <div class="fact fact--file"><dt>Source</dt><dd><a href="TODO-model-game-source.html" target="_blank" rel="noopener">The raw generated file</a></dd></div>
+                </dl>
+            </section>
+
+            <section class="panel panel--play" aria-label="Playable game">
+                <h2>Play it yourself</h2>
+                <div class="player" id="player">
+                    <div class="player__bar">
+                        <a class="player__back" href="../">Back to the lab</a>
+                        <span class="player__name">TODO Snake by TODO Model</span>
+                        <button type="button" class="player__btn" id="player-full">Fullscreen</button>
+                    </div>
+                    <!-- allow-same-origin is deliberate: without it the frame gets an
+                         opaque origin and localStorage throws, which would fail two of
+                         the three prompts on the harness rather than on the model. -->
+                    <iframe class="player__frame" src="TODO-model-game-source.html"
+                            title="TODO game built by TODO model"
+                            sandbox="allow-scripts allow-same-origin allow-pointer-lock"></iframe>
+                </div>
+                <p class="panel__note">Controls: TODO. Click inside the frame first or the keys go nowhere.</p>
+            </section>
+
+            <section class="panel" aria-labelledby="verdict-heading">
+                <h2 id="verdict-heading">The review</h2>
+
+                <h3>First impression</h3>
+                <p>TODO Did it even boot? What were the first ten seconds like?</p>
+
+                <h3>What works</h3>
+                <ul>
+                    <li>TODO</li>
+                    <li>TODO</li>
+                </ul>
+
+                <h3>What breaks</h3>
+                <ul>
+                    <li>TODO</li>
+                    <li>TODO</li>
+                </ul>
+
+                <h3>Verdict</h3>
+                <p class="verdict">TODO A paragraph, in your own words. No number.</p>
+            </section>
+
+            <section class="panel" aria-labelledby="prompt-heading">
+                <h2 id="prompt-heading">What it was asked for</h2>
+                <blockquote class="prompt" data-prompt="snake"></blockquote>
+                <p class="panel__note">Loaded straight from <code>prompts.js</code>.</p>
+            </section>
+
+        </main>
+
+        <footer class="app__footer">
+            <a href="../">Back to the lab</a> &middot; <a href="/">stephanbredenhann.dev</a>
+        </footer>
+    </div>
+
+    <script src="../prompts.js"></script>
+    <script>
+        document.querySelectorAll(".prompt").forEach(function (el) {
+            var key = el.getAttribute("data-prompt");
+            el.textContent = (window.GAME_PROMPTS || {})[key] || "(prompt not loaded)";
+        });
+
+        (function () {
+            var player = document.getElementById("player");
+            var btn = document.getElementById("player-full");
+            if (!player || !btn || !player.requestFullscreen) {
+                if (btn) btn.hidden = true;
+                return;
+            }
+            btn.addEventListener("click", function () {
+                if (document.fullscreenElement) document.exitFullscreen();
+                else player.requestFullscreen();
+            });
+            // Esc exits on its own, so the label has to follow the browser.
+            document.addEventListener("fullscreenchange", function () {
+                btn.textContent = document.fullscreenElement ? "Exit fullscreen" : "Fullscreen";
+            });
+        })();
+    </script>
+</body>
+</html>

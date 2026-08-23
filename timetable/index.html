@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TUKS Timetable Builder</title>
+    <meta name="description" content="Work out a University of Pretoria weekly timetable from the official class data. Search modules, try different lecture and tutorial groups, see what clashes, save the result as a PDF.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app__header">
+            <h1 class="app__title">TUKS Timetable Builder</h1>
+            <p class="app__subtitle">Search for what you are registered for, then work out which groups actually fit together before you commit.</p>
+            <p class="app__stamp" id="print-stamp" aria-hidden="true"></p>
+        </header>
+
+        <main class="app__main">
+            <aside class="sidebar">
+                <div class="chips" role="radiogroup" aria-label="Semester" id="semester-chips"></div>
+
+                <div class="search" id="search-box">
+                    <label class="field__label" for="module-search">Module code</label>
+                    <input
+                        class="field__input"
+                        type="text"
+                        id="module-search"
+                        placeholder="INF 214"
+                        autocomplete="off"
+                        role="combobox"
+                        aria-expanded="false"
+                        aria-controls="search-results"
+                        aria-autocomplete="list"
+                    >
+                    <ul class="search__results" id="search-results" role="listbox" hidden></ul>
+                </div>
+
+                <div class="picks" id="picks"></div>
+                <p class="sidebar__empty" id="sidebar-empty">Start typing a code above to add your first module.</p>
+
+                <details class="custom">
+                    <summary>Block out something else</summary>
+                    <form id="custom-form">
+                        <label class="field"><span class="field__label">Name</span>
+                            <input class="field__input" type="text" id="custom-name" placeholder="Work shift" required maxlength="40">
+                        </label>
+                        <div class="custom__row">
+                            <label class="field"><span class="field__label">Day</span>
+                                <select class="field__input" id="custom-day">
+                                    <option value="1">Monday</option><option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option><option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                </select>
+                            </label>
+                            <label class="field"><span class="field__label">Start</span>
+                                <input class="field__input" type="time" id="custom-start" value="18:00" required>
+                            </label>
+                            <label class="field"><span class="field__label">End</span>
+                                <input class="field__input" type="time" id="custom-end" value="19:00" required>
+                            </label>
+                        </div>
+                        <label class="field"><span class="field__label">Where (optional)</span>
+                            <input class="field__input" type="text" id="custom-venue" placeholder="HB 3-14" maxlength="40">
+                        </label>
+                        <button type="submit" class="btn btn--primary btn--full">Put it on the grid</button>
+                    </form>
+                </details>
+
+                <div class="actions">
+                    <button type="button" class="btn btn--primary btn--full" id="print-btn">Save as PDF</button>
+                    <p class="actions__hint">This opens your browser print dialog. Pick "Save as PDF" as the destination.</p>
+                    <div class="actions__row">
+                        <button type="button" class="btn btn--ghost" id="share-btn">Copy link</button>
+                        <button type="button" class="btn btn--danger" id="reset-btn">Clear</button>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="board" aria-label="Weekly timetable">
+                <div class="clash-banner" id="clash-banner" role="alert" hidden></div>
+                <div class="grid-wrap">
+                    <div class="grid" id="grid"></div>
+                </div>
+                <p class="board__empty" id="board-empty">Nothing on the board yet.</p>
+            </section>
+        </main>
+
+        <footer class="app__footer">
+            <p class="app__source">Built from the UP Student Timetable Creator export. Check anything that looks wrong against the official timetable before you rely on it.</p>
+            <a href="/">stephanbredenhann.dev</a>
+        </footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

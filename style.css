@@ -1045,3 +1045,92 @@ section[id] {
         stroke-dashoffset: 0;
     }
 }
+
+/* ---------- LLM Games Lab pill ---------- */
+.section--lab {
+    margin-bottom: var(--space-lg);
+}
+
+.lab-pill {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    width: 100%;
+    padding: clamp(1.1rem, 3vw, 1.6rem) clamp(1.25rem, 4vw, 2rem);
+    background:
+        linear-gradient(120deg, var(--gold-wash), transparent 55%),
+        var(--surface);
+    border: 1px solid var(--gold-border);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--ease-out) 0.25s, transform var(--ease-out) 0.25s;
+}
+
+@media (hover: hover) {
+    .lab-pill:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+}
+
+@media (max-width: 640px) {
+    .lab-pill {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: var(--radius-md);
+    }
+}
+
+.lab-pill__text {
+    flex: 1;
+    min-width: 0;
+}
+
+.lab-pill__title {
+    margin: 0 0 0.25rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--heading);
+}
+
+.lab-pill__desc {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+.lab-pill__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--gold-border);
+    background: transparent;
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: background var(--ease-out) 0.2s, transform var(--ease-out) 0.2s;
+}
+
+@media (max-width: 640px) {
+    .lab-pill__btn {
+        align-self: stretch;
+        justify-content: center;
+    }
+}
+
+.lab-pill__btn svg {
+    width: 1em;
+    height: 1em;
+}
+
+.lab-pill__btn:hover,
+.lab-pill__btn:focus-visible {
+    background: var(--gold-wash-strong);
+    transform: translateX(2px);
+}
